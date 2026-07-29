@@ -37,5 +37,31 @@ phones, often on slow connections.
 - `npm run build` — must pass before any commit
 - `npm run lint`
 
-## Design direction
-[fill this in after the design-direction session — see build plan Phase 2]
+## Design direction — "Chattahoochee Current"
+Kinetic, outdoor-adventure register built around the Chattahoochee whitewater
+course and RiverWalk.
+
+- Colors (defined as CSS custom properties in `app/globals.css`, both raw
+  palette vars and remapped shadcn semantic tokens):
+  - River Navy `#0B2E3D` — dark background / `.dark` mode base
+  - Foam White `#F5F7F6` — light background / text-on-navy
+  - Rapids Teal `#1E6B75` — secondary actions, links, focus ring (light mode)
+  - Brass `#C99A3D` — accent, headline highlight on navy, focus ring (dark mode)
+  - Signal Crimson `#D62839` — primary CTA buttons
+  - Ink Slate `#1B1F22` — body copy on Foam White
+  - Utility classes available directly: `bg-river-navy`, `text-foam-white`,
+    `text-rapids-teal`, `bg-brass`, `bg-signal-crimson`, `text-ink-slate`,
+    plus the standard shadcn semantic tokens (`bg-primary`, `bg-secondary`,
+    `bg-accent`, etc.) which are remapped to this palette.
+- Typefaces: display = **League Spartan** (`font-heading`, CSS var
+  `--font-league-spartan`), body = **Inter** (`font-sans`, CSS var
+  `--font-inter`). Both wired via `next/font/google` in `app/layout.tsx`.
+- Layout concept: a single vertical "riverbank" scroll — content blocks
+  alternate left/right of a persistent vertical line down the page.
+- Signature element: a continuous hand-drawn-style river contour line
+  (traced from the real bends of the Chattahoochee whitewater course),
+  rendered as a thin SVG stroke that runs behind the hero headline and
+  through every section divider. This is the one motif that should recur
+  everywhere — don't introduce a competing divider style.
+- Avoid: cream+terracotta, black+neon-green, numbered "01/02/03" markers,
+  gradient blobs, stock "hands together" imagery.
