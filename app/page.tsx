@@ -1,5 +1,6 @@
 import { SiteHeader } from "@/components/nav/site-header";
 import { About } from "@/components/sections/about";
+import { Gallery } from "@/components/sections/gallery";
 import { Hero } from "@/components/sections/hero";
 
 function StubSection({
@@ -31,7 +32,7 @@ export default function Home() {
       <main className="flex flex-1 flex-col">
         <Hero />
         <About />
-        <StubSection id="gallery" title="Event Pictures" />
+        <Gallery />
         <StubSection id="sponsors" title="Sponsorship" />
         <StubSection id="donate" title="Donate" />
         <StubSection id="contact" title="Contact" />
