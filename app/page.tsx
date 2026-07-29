@@ -2,6 +2,7 @@ import { SiteHeader } from "@/components/nav/site-header";
 import { About } from "@/components/sections/about";
 import { Gallery } from "@/components/sections/gallery";
 import { Hero } from "@/components/sections/hero";
+import { Sponsorship } from "@/components/sections/sponsorship";
 
 function StubSection({
   id,
@@ -33,7 +34,7 @@ export default function Home() {
         <Hero />
         <About />
         <Gallery />
-        <StubSection id="sponsors" title="Sponsorship" />
+        <Sponsorship />
         <StubSection id="donate" title="Donate" />
         <StubSection id="contact" title="Contact" />
       </main>

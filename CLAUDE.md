@@ -38,6 +38,11 @@ phones, often on slow connections.
   currently bracketed placeholders (`[Organization Name]`, etc.) rendered
   with a visible dashed/highlighted style in the About section so they're
   obvious to spot and replace — don't ship these to production as-is.
+- `content/sponsors.ts` — confirm real tier names/prices/perks (currently
+  example placeholders, same bracketed/highlighted treatment as About) and
+  add real sponsor logos to `currentSponsors` once secured. Also need a real
+  sponsor deck PDF — the Sponsorship section currently just says "coming
+  soon" instead of linking to one.
 
 ## Commands
 - `npm run dev` — dev server
