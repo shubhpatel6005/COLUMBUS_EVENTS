@@ -43,6 +43,19 @@ phones, often on slow connections.
   add real sponsor logos to `currentSponsors` once secured. Also need a real
   sponsor deck PDF — the Sponsorship section currently just says "coming
   soon" instead of linking to one.
+- `content/donate.ts` — confirm the org's actual tax-exempt status (are
+  donations tax-deductible or not?) and replace the placeholder disclaimer.
+  This is a compliance matter (see the plan's Georgia Charitable
+  Solicitations Act note), not just copy — don't guess at it.
+
+## External service setup still needed
+- **Stripe** (donations): needs a real Stripe account, `STRIPE_SECRET_KEY`,
+  and a webhook endpoint registered against the deployed URL for
+  `STRIPE_WEBHOOK_SECRET`. Code is built and validates amounts server-side
+  (min $1 / max $10,000) but is untested against a live Stripe account.
+- **Google Drive** (gallery): needs the Cloud project + service account +
+  shared Drive folder from the plan's Phase 3 Step 1, then
+  `GOOGLE_CLIENT_EMAIL` / `GOOGLE_PRIVATE_KEY` / `DRIVE_FOLDER_ID`.
 
 ## Commands
 - `npm run dev` — dev server
