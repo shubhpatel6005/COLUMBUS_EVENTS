@@ -1,11 +1,11 @@
-// TODO(content): replace every value below with real org info before launch.
-// See CLAUDE.md "Content TODOs" for the full pre-launch checklist.
+// TODO(content): real stats (events held, attendees, volunteers, founding
+// year) still needed. See CLAUDE.md "Content TODOs" for the full checklist.
 export const about = {
-  orgName: "[Organization Name]",
+  orgName: "Columbus Indian Community Events, Inc.",
   mission:
-    "[One to two sentence mission statement — what this organization does for Columbus, GA, and who it serves.]",
+    "We bring the rich tapestry of Indian culture to Columbus, Georgia through free and inclusive events that celebrate diversity, foster understanding, and create lasting connections.",
   whoRunsIt:
-    "[A short paragraph on who runs the organization — founders, board, volunteers — and the org's nonprofit status.]",
+    "We're a Columbus, Georgia nonprofit dedicated to hosting Indian Community Events throughout the year — from the joyous festivities of Navratri to the colorful kite-flying extravaganza of Uttrayan — showcasing the beauty, traditions, and spirit of India. With the support of generous donors, we cover venue rentals, cultural performances, music, community outreach, and authentic Indian culinary experiences.",
   stats: [
     { value: "[XX]", label: "Events since [founding year]" },
     { value: "[X,XXX]+", label: "Attendees reached" },

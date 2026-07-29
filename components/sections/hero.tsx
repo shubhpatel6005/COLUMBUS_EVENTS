@@ -14,8 +14,8 @@ export function Hero() {
 
       <div className="relative mx-auto max-w-3xl text-center">
         <h1 className="font-heading text-4xl font-bold tracking-tight uppercase text-foreground sm:text-5xl md:text-6xl">
-          Where the <span className="text-brass">Rapids</span> Meet the
-          Riverwalk
+          Columbus <span className="text-brass">Indian</span> Community
+          Events
         </h1>
         <p className="mt-6 text-lg text-muted-foreground">
           Community events for Columbus, Georgia — rooted Uptown, carried by

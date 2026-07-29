@@ -3,17 +3,27 @@
 # Columbus Community Events
 
 ## What this is
-A single-page site for community events in Columbus, GA, run by a registered
-nonprofit/community group. Sections: Home, About, Event Pictures, Sponsorship,
-Donate, Contact. Plus a few real routes that need their own URL: `/privacy`,
-`/terms`, `/events/[slug]`. Audience: local residents 25-65, mostly on
-phones, often on slow connections.
+A single-page site for **Columbus Indian Community Events, Inc.**, a
+Columbus, GA nonprofit that hosts free, inclusive Indian cultural events
+(e.g. Navratri, the Uttrayan kite-flying festival) funded by donors. Sections:
+Home, About, Event Pictures, Sponsorship, Donate, Contact. Plus a few real
+routes that need their own URL: `/privacy`, `/terms`, `/events/[slug]`.
+Audience: local residents 25-65, mostly on phones, often on slow connections.
 
 ## Confirmed decisions
 - Location: Columbus, Georgia (not OH/IN/MS).
-- Org type: registered nonprofit/community group — donations, not ticketing.
+- Org: Columbus Indian Community Events, Inc. — registered nonprofit,
+  donations not ticketing.
 - Gallery: Google Drive folder managed manually by the org, no visitor uploads.
 - Donations: Stripe Checkout (custom code, not a Givebutter/Donorbox embed).
+
+## Open branding question
+The site's generic "Columbus Events" nav brand, hero headline ("Where the
+Rapids Meet the Riverwalk"), and page metadata title predate knowing the
+org is specifically Indian-cultural-events-focused. Haven't touched these
+yet — ask before rewriting the hero/nav copy or metadata to reference Indian
+culture/festivals specifically, since that's a bigger identity change than
+a content-file edit.
 
 ## Rules
 - TypeScript strict. No `any`.
@@ -33,11 +43,11 @@ phones, often on slow connections.
 - Build one section per session. Don't build multiple sections in one pass.
 
 ## Content TODOs (must be filled before launch)
-- `content/about.ts` — org name, mission statement, "who runs it" blurb, and
-  real stats (events held, attendees, volunteers, founding year). All
-  currently bracketed placeholders (`[Organization Name]`, etc.) rendered
-  with a visible dashed/highlighted style in the About section so they're
-  obvious to spot and replace — don't ship these to production as-is.
+- `content/about.ts` — org name, mission, and "who runs it" are now real:
+  **Columbus Indian Community Events, Inc.**, a Columbus, GA nonprofit
+  hosting free Indian cultural events (Navratri, Uttrayan kite festival,
+  etc.), donor-funded. Only the stats (events held, attendees, volunteers,
+  founding year) are still bracketed placeholders.
 - `content/sponsors.ts` — confirm real tier names/prices/perks (currently
   example placeholders, same bracketed/highlighted treatment as About) and
   add real sponsor logos to `currentSponsors` once secured. Also need a real
