@@ -5,6 +5,7 @@ import { Donate } from "@/components/sections/donate";
 import { Gallery } from "@/components/sections/gallery";
 import { Hero } from "@/components/sections/hero";
 import { Sponsorship } from "@/components/sections/sponsorship";
+import { UpcomingEvents } from "@/components/sections/upcoming-events";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <SiteHeader />
       <main className="flex flex-1 flex-col">
         <Hero />
+        <UpcomingEvents />
         <About />
         <Gallery />
         <Sponsorship />

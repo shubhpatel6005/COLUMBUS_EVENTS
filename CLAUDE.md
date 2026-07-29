@@ -50,6 +50,11 @@ phones, often on slow connections.
 - `content/contact.ts` — confirm a real response-time commitment and, if
   there's a public office, a real address. No social links or map embed were
   added since there's no confirmed address/accounts yet — add them once real.
+- `content/events.ts` — replace the single example event with real upcoming
+  events (title, description, start/end time with UTC offset, location).
+  Drives the "Upcoming Events" homepage teaser, the `/events/[slug]` pages,
+  their JSON-LD Event schema, dynamic OG images, and .ics/Google Calendar
+  links — currently all placeholder-marked since no real event is confirmed.
 
 ## External service setup still needed
 - **Stripe** (donations): needs a real Stripe account, `STRIPE_SECRET_KEY`,
@@ -59,9 +64,10 @@ phones, often on slow connections.
 - **Google Drive** (gallery): needs the Cloud project + service account +
   shared Drive folder from the plan's Phase 3 Step 1, then
   `GOOGLE_CLIENT_EMAIL` / `GOOGLE_PRIVATE_KEY` / `DRIVE_FOLDER_ID`.
-- **Resend** (contact form + donation receipts): needs `RESEND_API_KEY`,
-  `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, and a verified sending domain
-  (SPF/DKIM) or mail lands in spam.
+- **Resend** (contact form + donation receipts + newsletter): needs
+  `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, a verified
+  sending domain (SPF/DKIM) or mail lands in spam, and `RESEND_AUDIENCE_ID`
+  (create an Audience in the Resend dashboard) for the newsletter signup bar.
 - **Cloudflare Turnstile** (contact form spam protection): needs
   `NEXT_PUBLIC_TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY`. The widget and
   server verification both currently no-op (fail open) when unset — the
