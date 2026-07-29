@@ -32,6 +32,13 @@ phones, often on slow connections.
   `DRIVE_FOLDER_ID` before serving it — do not build an open proxy.
 - Build one section per session. Don't build multiple sections in one pass.
 
+## Content TODOs (must be filled before launch)
+- `content/about.ts` — org name, mission statement, "who runs it" blurb, and
+  real stats (events held, attendees, volunteers, founding year). All
+  currently bracketed placeholders (`[Organization Name]`, etc.) rendered
+  with a visible dashed/highlighted style in the About section so they're
+  obvious to spot and replace — don't ship these to production as-is.
+
 ## Commands
 - `npm run dev` — dev server
 - `npm run build` — must pass before any commit
