@@ -47,6 +47,9 @@ phones, often on slow connections.
   donations tax-deductible or not?) and replace the placeholder disclaimer.
   This is a compliance matter (see the plan's Georgia Charitable
   Solicitations Act note), not just copy — don't guess at it.
+- `content/contact.ts` — confirm a real response-time commitment and, if
+  there's a public office, a real address. No social links or map embed were
+  added since there's no confirmed address/accounts yet — add them once real.
 
 ## External service setup still needed
 - **Stripe** (donations): needs a real Stripe account, `STRIPE_SECRET_KEY`,
@@ -56,6 +59,16 @@ phones, often on slow connections.
 - **Google Drive** (gallery): needs the Cloud project + service account +
   shared Drive folder from the plan's Phase 3 Step 1, then
   `GOOGLE_CLIENT_EMAIL` / `GOOGLE_PRIVATE_KEY` / `DRIVE_FOLDER_ID`.
+- **Resend** (contact form + donation receipts): needs `RESEND_API_KEY`,
+  `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, and a verified sending domain
+  (SPF/DKIM) or mail lands in spam.
+- **Cloudflare Turnstile** (contact form spam protection): needs
+  `NEXT_PUBLIC_TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY`. The widget and
+  server verification both currently no-op (fail open) when unset — the
+  contact form works but has no bot challenge until these are added.
+- **Upstash Redis** (contact form rate limiting): needs
+  `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`. Rate limiting
+  fails open (unlimited submissions) when unset, per `lib/rate-limit.ts`.
 
 ## Commands
 - `npm run dev` — dev server
