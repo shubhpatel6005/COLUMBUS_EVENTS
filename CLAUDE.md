@@ -155,9 +155,13 @@ headline).
   the interval never starts at all if `useReducedMotion()` is true. Keep
   this pattern (interval + layout animation + hover-pause + reduced-motion
   check) if more rotating/carousel UI gets added elsewhere.
-- Header: `bg-primary` (Marigold), solid, no transparency/blur. No brand
-  text/logo in the header or mobile menu — removed per request. Active nav
-  link is distinguished by weight + underline (not a color swap, since
+- Header: `bg-primary` (Marigold), solid, no transparency/blur. Logo is an
+  Om symbol image (`public/images/brand/om-logo.png`, transparent PNG,
+  sourced from the user), left-aligned, links to `#hero`, sized `h-16`.
+  Brand *text* ("Columbus Events") was removed per an earlier request and
+  hasn't come back — only the image logo. Mobile menu's own top bar still
+  has no logo (only the close button) — hasn't been asked for there yet.
+  Active nav link is distinguished by weight + underline (not a color swap, since
   there's no third color that reads well on Marigold). Nav link text is
   `text-deep-violet` at full opacity — an earlier version used
   `text-primary-foreground/75` for inactive links, which blends with the

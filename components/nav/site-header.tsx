@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import { MobileMenu, type NavSection } from "./mobile-menu";
@@ -39,7 +41,18 @@ export function SiteHeader() {
   return (
     <>
       <header className="sticky top-0 z-40 bg-primary">
-        <div className="mx-auto flex h-20 max-w-6xl items-center justify-end px-4 sm:px-6">
+        <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6">
+          <Link href="#hero" aria-label="Columbus Indian Community Events — home">
+            <Image
+              src="/images/brand/om-logo.png"
+              alt="Columbus Indian Community Events logo"
+              width={200}
+              height={180}
+              priority
+              className="h-16 w-auto"
+            />
+          </Link>
+
           <nav className="hidden items-center gap-6 md:flex">
             {SECTIONS.map((section) => (
               <a
