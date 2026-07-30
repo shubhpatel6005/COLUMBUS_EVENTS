@@ -152,9 +152,32 @@ headline).
   auto-rotate their left-to-right order every 4s via a `setInterval` +
   Motion's `layout` prop (smooth position transitions, not a jump-cut).
   Pauses on `onMouseEnter` of the section, resumes on `onMouseLeave`, and
-  the interval never starts at all if `useReducedMotion()` is true. Keep
-  this pattern (interval + layout animation + hover-pause + reduced-motion
+  the interval never starts if reduced motion is preferred. Keep this
+  pattern (interval + layout animation + hover-pause + reduced-motion
   check) if more rotating/carousel UI gets added elsewhere.
+- **Bug found in `framer-motion`'s own `useReducedMotion()`** (re-exported
+  from `motion/react`): it calls
+  `window.matchMedia("(prefers-reduced-motion)")` — missing `: reduce` —
+  which does not reliably detect the real OS preference (confirmed via
+  Playwright's `reducedMotion: 'reduce'` context: `matchMedia("(prefers-
+  reduced-motion: reduce)").matches` correctly returned `true`, but
+  framer-motion's hook never reflected it, so reduced-motion users still
+  got the full intro animation and the rotating carousel). Do **not**
+  import `useReducedMotion` from `motion/react` anywhere in this project.
+  Use `useReducedMotion` from `lib/use-reduced-motion.ts` instead — a
+  small `useSyncExternalStore`-based hook that queries the correct media
+  feature and is SSR-hydration-safe. Both the intro overlay and the
+  upcoming-events carousel use it.
+- Homepage intro (`components/intro/intro-overlay.tsx`, mounted only in
+  `app/page.tsx`, not the layout): a full-screen overlay that stroke-draws
+  a Namaste logo in black, holds briefly, then fades to reveal the site
+  underneath (already rendered, just covered). The logo is
+  `public/images/Animation/Namaste-Logo-PNG-Pic.png`, vector-traced with
+  `potrace` (a one-off conversion tool, not a project dependency — not in
+  package.json) into `components/intro/namaste-path.ts`, then animated via
+  Motion's `pathLength`. Skips entirely under reduced motion (see hook
+  note above). Timing constants (`DRAW_DURATION_S`, `HOLD_AFTER_DRAW_MS`,
+  `FADE_DURATION_S`) are all in that file if the pacing needs adjusting.
 - Header: `bg-primary` (Marigold), solid, no transparency/blur. Logo is an
   Om symbol image (`public/images/brand/om-logo.png`, transparent PNG,
   sourced from the user), left-aligned, links to `#hero`, sized `h-16`.

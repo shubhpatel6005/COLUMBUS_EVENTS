@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
 import { buttonVariants } from "@/components/ui/button";
 import { events } from "@/content/events";
 import { cn } from "@/lib/utils";
+import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 const ROTATE_INTERVAL_MS = 4000;
 

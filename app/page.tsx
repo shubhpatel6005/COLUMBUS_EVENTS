@@ -1,3 +1,4 @@
+import { IntroOverlay } from "@/components/intro/intro-overlay";
 import { SiteHeader } from "@/components/nav/site-header";
 import { About } from "@/components/sections/about";
 import { Contact } from "@/components/sections/contact";
@@ -10,6 +11,7 @@ import { UpcomingEvents } from "@/components/sections/upcoming-events";
 export default function Home() {
   return (
     <>
+      <IntroOverlay />
       <SiteHeader />
       <main className="flex flex-1 flex-col">
         <Hero />
