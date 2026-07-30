@@ -65,7 +65,7 @@ export default async function EventPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <p className="font-heading text-sm font-semibold tracking-widest text-rapids-teal uppercase">
+      <p className="font-heading text-sm font-semibold tracking-widest text-turmeric uppercase">
         Event
       </p>
       <h1 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">
@@ -112,7 +112,7 @@ export default async function EventPage({
 
       <Link
         href="/"
-        className="mt-10 inline-block text-sm text-rapids-teal hover:underline"
+        className="mt-10 inline-block text-sm text-turmeric hover:underline"
       >
         ← Back to the site
       </Link>

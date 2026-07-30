@@ -56,10 +56,10 @@ export function Donate() {
   return (
     <section
       id="donate"
-      className="scroll-mt-16 border-t border-border bg-background px-4 py-24"
+      className="scroll-mt-20 border-t border-border bg-background px-4 py-24"
     >
       <div className="mx-auto max-w-lg text-center">
-        <p className="font-heading text-sm font-semibold tracking-widest text-rapids-teal uppercase">
+        <p className="font-heading text-sm font-semibold tracking-widest text-turmeric uppercase">
           Donate
         </p>
         <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">
@@ -109,7 +109,7 @@ export function Donate() {
                 className={cn(
                   "rounded-lg border px-3 py-2 text-sm font-semibold",
                   selectedAmount === amount
-                    ? "border-primary bg-primary/10 text-primary"
+                    ? "border-primary bg-primary/10 text-turmeric"
                     : "border-border text-foreground hover:bg-muted",
                 )}
               >
@@ -124,7 +124,7 @@ export function Donate() {
               className={cn(
                 "rounded-lg border px-3 py-2 text-sm font-semibold",
                 selectedAmount === "custom"
-                  ? "border-primary bg-primary/10 text-primary"
+                  ? "border-primary bg-primary/10 text-turmeric"
                   : "border-border text-foreground hover:bg-muted",
               )}
             >

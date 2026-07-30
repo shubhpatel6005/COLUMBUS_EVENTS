@@ -46,13 +46,13 @@ export function Lightbox({
       role="dialog"
       aria-modal="true"
       aria-label={photo.name || "Event photo"}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-river-navy/90 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-deep-violet/90 p-4"
     >
       <button
         type="button"
         onClick={onClose}
         aria-label="Close"
-        className="absolute top-4 right-4 flex size-10 items-center justify-center rounded-lg text-foam-white hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-brass"
+        className="absolute top-4 right-4 flex size-10 items-center justify-center rounded-lg text-ivory hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-marigold"
       >
         <svg
           viewBox="0 0 24 24"
@@ -70,7 +70,7 @@ export function Lightbox({
         type="button"
         onClick={onPrev}
         aria-label="Previous photo"
-        className="absolute top-1/2 left-4 flex size-10 -translate-y-1/2 items-center justify-center rounded-lg text-foam-white hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-brass"
+        className="absolute top-1/2 left-4 flex size-10 -translate-y-1/2 items-center justify-center rounded-lg text-ivory hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-marigold"
       >
         <svg
           viewBox="0 0 24 24"
@@ -97,7 +97,7 @@ export function Lightbox({
         type="button"
         onClick={onNext}
         aria-label="Next photo"
-        className="absolute top-1/2 right-4 flex size-10 -translate-y-1/2 items-center justify-center rounded-lg text-foam-white hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-brass"
+        className="absolute top-1/2 right-4 flex size-10 -translate-y-1/2 items-center justify-center rounded-lg text-ivory hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-marigold"
       >
         <svg
           viewBox="0 0 24 24"

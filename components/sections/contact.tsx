@@ -94,9 +94,9 @@ export function Contact() {
     return (
       <section
         id="contact"
-        className="scroll-mt-16 border-t border-border bg-background px-4 py-24 text-center"
+        className="scroll-mt-20 border-t border-border bg-background px-4 py-24 text-center"
       >
-        <p className="font-heading text-sm font-semibold tracking-widest text-rapids-teal uppercase">
+        <p className="font-heading text-sm font-semibold tracking-widest text-turmeric uppercase">
           Contact
         </p>
         <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">
@@ -113,11 +113,11 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="scroll-mt-16 border-t border-border bg-background px-4 py-24"
+      className="scroll-mt-20 border-t border-border bg-background px-4 py-24"
     >
       <div className="mx-auto max-w-xl">
         <div className="text-center">
-          <p className="font-heading text-sm font-semibold tracking-widest text-rapids-teal uppercase">
+          <p className="font-heading text-sm font-semibold tracking-widest text-turmeric uppercase">
             Contact
           </p>
           <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">

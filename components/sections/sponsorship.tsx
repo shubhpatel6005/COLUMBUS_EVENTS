@@ -9,11 +9,11 @@ export function Sponsorship() {
   return (
     <section
       id="sponsors"
-      className="scroll-mt-16 border-t border-border bg-background px-4 py-24"
+      className="scroll-mt-20 border-t border-border bg-background px-4 py-24"
     >
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="font-heading text-sm font-semibold tracking-widest text-rapids-teal uppercase">
+          <p className="font-heading text-sm font-semibold tracking-widest text-turmeric uppercase">
             Sponsorship
           </p>
           <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">
@@ -30,7 +30,7 @@ export function Sponsorship() {
               <p className="font-heading text-lg font-semibold text-foreground">
                 {tier.name}
               </p>
-              <p className="mt-1 font-heading text-3xl font-bold text-primary">
+              <p className="mt-1 font-heading text-3xl font-bold text-turmeric">
                 <PlaceholderMark>{tier.price}</PlaceholderMark>
               </p>
               <ul className="mt-4 flex-1 space-y-2 text-sm text-muted-foreground">

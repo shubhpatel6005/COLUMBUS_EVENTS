@@ -10,7 +10,7 @@ export const metadata = {
 export default function DonateThanksPage() {
   return (
     <main className="flex flex-1 flex-col items-center justify-center px-4 py-24 text-center">
-      <p className="font-heading text-sm font-semibold tracking-widest text-rapids-teal uppercase">
+      <p className="font-heading text-sm font-semibold tracking-widest text-turmeric uppercase">
         Thank you
       </p>
       <h1 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">

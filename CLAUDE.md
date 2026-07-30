@@ -1,6 +1,6 @@
 @AGENTS.md
 
-# Columbus Community Events
+# Columbus Indian Community Events
 
 ## What this is
 A single-page site for **Columbus Indian Community Events, Inc.**, a
@@ -17,13 +17,10 @@ Audience: local residents 25-65, mostly on phones, often on slow connections.
 - Gallery: Google Drive folder managed manually by the org, no visitor uploads.
 - Donations: Stripe Checkout (custom code, not a Givebutter/Donorbox embed).
 
-## Open branding question
-The site's generic "Columbus Events" nav brand, hero headline ("Where the
-Rapids Meet the Riverwalk"), and page metadata title predate knowing the
-org is specifically Indian-cultural-events-focused. Haven't touched these
-yet — ask before rewriting the hero/nav copy or metadata to reference Indian
-culture/festivals specifically, since that's a bigger identity change than
-a content-file edit.
+- Design direction: **Marigold Bloom** (see below) — deep violet + marigold
+  + terracotta, Playfair Display serif, full-bleed split image/text hero.
+  Replaced the earlier "Chattahoochee Current" river theme once the org's
+  real identity (Indian cultural nonprofit) was known.
 
 ## Rules
 - TypeScript strict. No `any`.
@@ -46,8 +43,8 @@ a content-file edit.
 - `content/about.ts` — org name, mission, and "who runs it" are now real:
   **Columbus Indian Community Events, Inc.**, a Columbus, GA nonprofit
   hosting free Indian cultural events (Navratri, Uttrayan kite festival,
-  etc.), donor-funded. Only the stats (events held, attendees, volunteers,
-  founding year) are still bracketed placeholders.
+  etc.), donor-funded. No stats block (events held/attendees/volunteers) —
+  removed per request; About is a single centered paragraph layout now.
 - `content/sponsors.ts` — confirm real tier names/prices/perks (currently
   example placeholders, same bracketed/highlighted treatment as About) and
   add real sponsor logos to `currentSponsors` once secured. Also need a real
@@ -65,6 +62,12 @@ a content-file edit.
   Drives the "Upcoming Events" homepage teaser, the `/events/[slug]` pages,
   their JSON-LD Event schema, dynamic OG images, and .ics/Google Calendar
   links — currently all placeholder-marked since no real event is confirmed.
+- `public/images/hero/hero-statue.jpg` — this is a **Thai Buddhist statue**
+  (filename was literally `thai-style-buddha-sculpture-concept.jpg`), not
+  Hindu/Indian imagery. Flagged explicitly to the user, who chose to use it
+  anyway — but it doesn't represent the org's actual culture/religion.
+  Worth revisiting with real photos (deity murtis, Navratri garba, diyas,
+  rangoli, kite festival, temple imagery) before launch.
 
 ## External service setup still needed
 - **Stripe** (donations): needs a real Stripe account, `STRIPE_SECRET_KEY`,
@@ -91,31 +94,57 @@ a content-file edit.
 - `npm run build` — must pass before any commit
 - `npm run lint`
 
-## Design direction — "Chattahoochee Current"
-Kinetic, outdoor-adventure register built around the Chattahoochee whitewater
-course and RiverWalk.
+## Design direction — "Marigold Bloom"
+Replaced "Chattahoochee Current" (river/rapids theme) once the org's real
+identity — Columbus Indian Community Events, Inc. — was known. Warm,
+devotional register: deep violet + marigold + terracotta, serif display
+type, full-bleed split-image hero. Loosely modeled on a Hindu-temple-site
+reference the user shared (orange header bar, duotone statue photo, serif
+headline).
 
-- Colors (defined as CSS custom properties in `app/globals.css`, both raw
-  palette vars and remapped shadcn semantic tokens):
-  - River Navy `#0B2E3D` — dark background / `.dark` mode base
-  - Foam White `#F5F7F6` — light background / text-on-navy
-  - Rapids Teal `#1E6B75` — secondary actions, links, focus ring (light mode)
-  - Brass `#C99A3D` — accent, headline highlight on navy, focus ring (dark mode)
-  - Signal Crimson `#D62839` — primary CTA buttons
-  - Ink Slate `#1B1F22` — body copy on Foam White
-  - Utility classes available directly: `bg-river-navy`, `text-foam-white`,
-    `text-rapids-teal`, `bg-brass`, `bg-signal-crimson`, `text-ink-slate`,
-    plus the standard shadcn semantic tokens (`bg-primary`, `bg-secondary`,
-    `bg-accent`, etc.) which are remapped to this palette.
-- Typefaces: display = **League Spartan** (`font-heading`, CSS var
-  `--font-league-spartan`), body = **Inter** (`font-sans`, CSS var
-  `--font-inter`). Both wired via `next/font/google` in `app/layout.tsx`.
-- Layout concept: a single vertical "riverbank" scroll — content blocks
-  alternate left/right of a persistent vertical line down the page.
-- Signature element: a continuous hand-drawn-style river contour line
-  (traced from the real bends of the Chattahoochee whitewater course),
-  rendered as a thin SVG stroke that runs behind the hero headline and
-  through every section divider. This is the one motif that should recur
-  everywhere — don't introduce a competing divider style.
-- Avoid: cream+terracotta, black+neon-green, numbered "01/02/03" markers,
-  gradient blobs, stock "hands together" imagery.
+- Colors (CSS custom properties in `app/globals.css`, both raw palette vars
+  and remapped shadcn semantic tokens — all pairs below are contrast-checked
+  for WCAG AA):
+  - Deep Violet `#2D1B4E` — headings/body text on light backgrounds,
+    `.dark` mode background, `primary-foreground` (13.5:1 on Ivory)
+  - Marigold `#E08A2E` — `primary` (buttons, sticky header bar); pair with
+    Deep Violet text, not light text (5.7:1 with Deep Violet, only ~2.4:1
+    with Ivory/white)
+  - Turmeric `#A15A0A` — the **accent-safe text color**: eyebrow labels,
+    highlighted headline words, stat/price callouts, links. Use this, not
+    Marigold, whenever the accent color itself needs to be legible text on
+    a light bg (4.7:1 vs Marigold's ~2.4:1)
+  - Ivory `#F6F1E4` — default page background / text-on-dark
+  - Ink `#3A2E4A` — spare/optional darker-body-text raw color, not currently
+    wired into a semantic token
+  - Utility classes: `bg-deep-violet`, `text-deep-violet`, `bg-marigold`,
+    `text-marigold`, `bg-turmeric`, `text-turmeric`, `bg-ivory`, `text-ivory`,
+    `bg-ink`, `text-ink`, plus standard shadcn semantic tokens (`bg-primary`,
+    `bg-secondary`, `bg-accent`, etc.) remapped to this palette.
+  - One-off exception: the About section uses a hardcoded `bg-[#ebddd2]`
+    (soft beige) background per explicit request, with `text-foreground`
+    (Deep Violet, 11.5:1) for all its text — single centered paragraph
+    layout, no eyebrow label, no stats block. Not part of the token system
+    — don't propagate this bg to other sections without being asked.
+- Typefaces: display = **Playfair Display** (`font-heading`, CSS var
+  `--font-playfair`, weights 400-900), body = **Inter** (`font-sans`, CSS
+  var `--font-inter`). Both wired via `next/font/google` in `app/layout.tsx`.
+- Hero layout: full-bleed 50/50 split (`grid md:grid-cols-2`, no page
+  max-width wrapper, both columns the same fixed height via `md:h-[640px]`)
+  — image column left with `object-top` (keeps the subject's head/face in
+  frame), text column right. This is a deliberate exception to the
+  contained `max-w-*` layout every other section uses.
+- Image treatment: grayscale the photo via CSS `filter`, then overlay a
+  Deep-Violet-to-Marigold gradient with `mix-blend-mode: color` — a
+  duotone effect done entirely in CSS, no image preprocessing needed. See
+  `components/sections/hero.tsx`.
+- Header: `bg-primary` (Marigold), solid, no transparency/blur. No brand
+  text/logo in the header or mobile menu — removed per request. Active nav
+  link is distinguished by weight + underline (not a color swap, since
+  there's no third color that reads well on Marigold).
+- Header/section heights: header is `h-20` (not the Tailwind default);
+  every anchor-scrolled section must use `scroll-mt-20` to match, or
+  content will be hidden behind the sticky header on jump-to-anchor.
+- Avoid: cream+terracotta as a *sitewide* base (fine as the one-off About
+  exception above), black+neon-green, numbered "01/02/03" markers, stock
+  "hands together" imagery.

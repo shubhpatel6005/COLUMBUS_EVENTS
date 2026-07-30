@@ -66,10 +66,7 @@ export function MobileMenu({
       aria-label="Main menu"
       className="fixed inset-0 z-50 flex flex-col bg-background md:hidden"
     >
-      <div className="flex h-16 items-center justify-between border-b border-border px-4">
-        <span className="font-heading text-lg font-bold uppercase text-foreground">
-          Columbus Events
-        </span>
+      <div className="flex h-20 items-center justify-end border-b border-border px-4">
         <button
           type="button"
           onClick={onClose}
@@ -98,7 +95,7 @@ export function MobileMenu({
             aria-current={activeId === section.id ? "true" : undefined}
             className={
               activeId === section.id
-                ? "font-heading text-2xl font-semibold uppercase text-primary"
+                ? "font-heading text-2xl font-semibold uppercase text-turmeric"
                 : "font-heading text-2xl font-semibold uppercase text-foreground"
             }
           >

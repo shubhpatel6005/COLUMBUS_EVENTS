@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { League_Spartan, Inter } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 
 import { NewsletterBar } from "@/components/newsletter/newsletter-bar";
 import "./globals.css";
 
-const leagueSpartan = League_Spartan({
-  variable: "--font-league-spartan",
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
+  weight: ["400", "600", "700", "800", "900"],
 });
 
 const inter = Inter({
@@ -18,9 +19,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   ),
-  title: "Columbus Community Events",
+  title: "Columbus Indian Community Events",
   description:
-    "Community events for Columbus, Georgia — rooted Uptown, carried by the river.",
+    "Free, inclusive Indian cultural events in Columbus, Georgia — Navratri, Uttrayan, and more.",
 };
 
 export default function RootLayout({
@@ -31,7 +32,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${leagueSpartan.variable} ${inter.variable} h-full antialiased`}
+      className={`${playfairDisplay.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {children}

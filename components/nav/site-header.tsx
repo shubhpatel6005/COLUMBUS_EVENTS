@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import { MobileMenu, type NavSection } from "./mobile-menu";
@@ -39,15 +38,8 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-          <Link
-            href="#hero"
-            className="font-heading text-lg font-bold uppercase tracking-tight text-foreground"
-          >
-            Columbus Events
-          </Link>
-
+      <header className="sticky top-0 z-40 bg-primary">
+        <div className="mx-auto flex h-20 max-w-6xl items-center justify-end px-4 sm:px-6">
           <nav className="hidden items-center gap-6 md:flex">
             {SECTIONS.map((section) => (
               <a
@@ -56,8 +48,8 @@ export function SiteHeader() {
                 aria-current={activeId === section.id ? "true" : undefined}
                 className={
                   activeId === section.id
-                    ? "text-sm font-medium text-primary"
-                    : "text-sm font-medium text-foreground/70 hover:text-foreground"
+                    ? "text-sm font-semibold text-primary-foreground underline underline-offset-4"
+                    : "text-sm font-medium text-primary-foreground/75 hover:text-primary-foreground"
                 }
               >
                 {section.label}
@@ -72,7 +64,7 @@ export function SiteHeader() {
             aria-label="Open menu"
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
-            className="flex size-10 items-center justify-center rounded-lg text-foreground hover:bg-muted md:hidden"
+            className="flex size-10 items-center justify-center rounded-lg text-primary-foreground hover:bg-deep-violet/10 md:hidden"
           >
             <svg
               viewBox="0 0 24 24"

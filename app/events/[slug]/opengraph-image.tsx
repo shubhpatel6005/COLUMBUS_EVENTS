@@ -6,7 +6,7 @@ export function generateStaticParams() {
   return events.map((event) => ({ slug: event.slug }));
 }
 
-export const alt = "Columbus Community Events";
+export const alt = "Columbus Indian Community Events";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -17,7 +17,7 @@ export default async function Image({
 }) {
   const { slug } = await params;
   const event = getEventBySlug(slug);
-  const title = event?.title ?? "Columbus Community Events";
+  const title = event?.title ?? "Columbus Indian Community Events";
 
   return new ImageResponse(
     (
@@ -29,8 +29,8 @@ export default async function Image({
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#0B2E3D",
-          color: "#F5F7F6",
+          backgroundColor: "#2D1B4E",
+          color: "#F6F1E4",
           padding: "80px",
           textAlign: "center",
         }}
@@ -38,13 +38,13 @@ export default async function Image({
         <div
           style={{
             fontSize: 28,
-            color: "#C99A3D",
+            color: "#E08A2E",
             marginBottom: 24,
             letterSpacing: 4,
             textTransform: "uppercase",
           }}
         >
-          Columbus Community Events
+          Columbus Indian Community Events
         </div>
         <div style={{ fontSize: 60, fontWeight: 700 }}>{title}</div>
       </div>
