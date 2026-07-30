@@ -47,18 +47,20 @@ Audience: local residents 25-65, mostly on phones, often on slow connections.
   add real sponsor logos to `currentSponsors` once secured. Also need a real
   sponsor deck PDF — the Sponsorship section currently just says "coming
   soon" instead of linking to one.
-- `content/donate.ts` — confirm the org's actual tax-exempt status (are
-  donations tax-deductible or not?) and replace the placeholder disclaimer.
-  This is a compliance matter (see the plan's Georgia Charitable
-  Solicitations Act note), not just copy — don't guess at it.
+- `content/donate.ts` is **done** — confirmed 501(c)(3) status from the
+  org's own event flyers ("A 501(c)3 Nonprofit Organization"), real
+  disclaimer in place. Still worth a quick sanity-check against the actual
+  IRS determination letter/EIN before launch, but not a placeholder anymore.
 - `content/contact.ts` — confirm a real response-time commitment and, if
   there's a public office, a real address. No social links or map embed were
   added since there's no confirmed address/accounts yet — add them once real.
-- `content/events.ts` — replace the single example event with real upcoming
-  events (title, description, start/end time with UTC offset, location).
-  Drives the "Upcoming Events" homepage teaser, the `/events/[slug]` pages,
-  their JSON-LD Event schema, dynamic OG images, and .ics/Google Calendar
-  links — currently all placeholder-marked since no real event is confirmed.
+- `content/events.ts` is **mostly done** — 3 real events (6th Annual Garba
+  Musical Night, one night each for Geeta Rabari/Divya Chaudhary/Aishwaria
+  Majumdar, Sept 4-6 2026, Columbus Civic Center — sourced from the org's
+  own flyer images in `public/images/events/`). Two things still needed:
+  (1) exact start/end times — flyers only list the date, so `startDateTime`/
+  `endDateTime` currently guess 7-11pm; (2) real `ticketUrl` per event —
+  currently `"#"` placeholders, user explicitly said "no link yet."
 - `public/images/hero/hero-statue.jpg` — this is a **Thai Buddhist statue**
   (filename was literally `thai-style-buddha-sculpture-concept.jpg`), not
   Hindu/Indian imagery. Flagged explicitly to the user, who chose to use it
@@ -125,13 +127,15 @@ headline).
     flag). Not part of the token system — don't propagate this combo to
     other sections without being asked.
   - **Known accessibility regression, left as-is per explicit user
-    instruction**: the Hero's CTA buttons use `bg-[#ebddd2]` (soft beige)
-    with `text-marigold` — roughly **2:1 contrast**, well under the 4.5:1
-    AA floor this file otherwise mandates. The Hero subhead paragraph also
-    uses `text-marigold` on Ivory (~2.4:1). Both were flagged to the user
-    explicitly; they chose to keep iterating on other things instead of
-    fixing it. Don't "fix" this silently in a future session — it's a live
-    open question, not an oversight. Ask before changing.
+    instruction**: the Hero's CTA buttons, the "Get Tickets" buttons on the
+    homepage event cards, and the individual `/events/[slug]` page all use
+    `bg-[#ebddd2]` (soft beige) with `text-marigold` — roughly **2:1
+    contrast**, well under the 4.5:1 AA floor this file otherwise mandates.
+    The Hero subhead paragraph also uses `text-marigold` on Ivory (~2.4:1).
+    All flagged to the user explicitly; they chose to keep iterating on
+    other things instead of fixing it. Don't "fix" this silently in a
+    future session — it's a live open question, not an oversight. Ask
+    before changing.
 - Typefaces: display = **Playfair Display** (`font-heading`, CSS var
   `--font-playfair`, weights 400-900), body = **Inter** (`font-sans`, CSS
   var `--font-inter`). Both wired via `next/font/google` in `app/layout.tsx`.
@@ -144,6 +148,13 @@ headline).
   Deep-Violet-to-Marigold gradient with `mix-blend-mode: color` — a
   duotone effect done entirely in CSS, no image preprocessing needed. See
   `components/sections/hero.tsx`.
+- "Next Event" homepage cards (`components/sections/upcoming-events.tsx`)
+  auto-rotate their left-to-right order every 4s via a `setInterval` +
+  Motion's `layout` prop (smooth position transitions, not a jump-cut).
+  Pauses on `onMouseEnter` of the section, resumes on `onMouseLeave`, and
+  the interval never starts at all if `useReducedMotion()` is true. Keep
+  this pattern (interval + layout animation + hover-pause + reduced-motion
+  check) if more rotating/carousel UI gets added elsewhere.
 - Header: `bg-primary` (Marigold), solid, no transparency/blur. No brand
   text/logo in the header or mobile menu — removed per request. Active nav
   link is distinguished by weight + underline (not a color swap, since

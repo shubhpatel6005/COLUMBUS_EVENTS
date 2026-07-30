@@ -1,6 +1,5 @@
-// TODO(content): confirm the org's actual tax-exempt status and replace this
-// disclaimer with an accurate one before launch. See CLAUDE.md "Content TODOs".
+// Confirmed via the org's own event flyers ("A 501(c)3 Nonprofit
+// Organization"). Still worth a quick double-check against the actual IRS
+// determination letter/EIN before launch — see CLAUDE.md.
 export const taxDisclaimer =
-  "[Confirm tax-deductibility status: e.g. \"We are a 501(c)(3) nonprofit; " +
-  "your donation is tax-deductible to the extent allowed by law\" or state " +
-  "plainly that donations are not tax-deductible.]";
+  "Columbus Indian Community Events, Inc. is a 501(c)(3) nonprofit organization. Your donation is tax-deductible to the extent allowed by law.";

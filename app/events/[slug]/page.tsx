@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { PlaceholderMark } from "@/components/content/placeholder-mark";
 import { buttonVariants } from "@/components/ui/button";
 import { events, getEventBySlug } from "@/content/events";
 import { googleCalendarUrl } from "@/lib/ics";
@@ -22,7 +22,7 @@ export async function generateMetadata({
   if (!event) return {};
 
   return {
-    title: `${event.title} — Columbus Community Events`,
+    title: `${event.title} — Columbus Indian Community Events`,
     description: event.description,
   };
 }
@@ -46,6 +46,7 @@ export default async function EventPage({
     endDate: event.endDateTime,
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
+    image: `${siteUrl}${event.imageSrc}`,
     location: {
       "@type": "Place",
       name: event.locationName,
@@ -53,7 +54,7 @@ export default async function EventPage({
     },
     organizer: {
       "@type": "Organization",
-      name: "Columbus Community Events",
+      name: "Columbus Indian Community Events, Inc.",
       url: siteUrl,
     },
   };
@@ -65,15 +66,22 @@ export default async function EventPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <p className="font-heading text-sm font-semibold tracking-widest text-turmeric uppercase">
+      <Image
+        src={event.imageSrc}
+        alt={event.title}
+        width={724}
+        height={1024}
+        priority
+        className="mx-auto h-auto w-full max-w-xs rounded-lg"
+      />
+
+      <p className="mt-8 font-heading text-sm font-semibold tracking-widest text-turmeric uppercase">
         Event
       </p>
       <h1 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">
-        <PlaceholderMark>{event.title}</PlaceholderMark>
+        {event.title}
       </h1>
-      <p className="mt-4 text-lg text-foreground">
-        <PlaceholderMark>{event.description}</PlaceholderMark>
-      </p>
+      <p className="mt-4 text-lg text-foreground">{event.description}</p>
 
       <dl className="mt-6 space-y-2 text-sm text-muted-foreground">
         <div>
@@ -87,13 +95,20 @@ export default async function EventPage({
         </div>
         <div>
           <dt className="inline font-medium text-foreground">Where: </dt>
-          <dd className="inline">
-            <PlaceholderMark>{`${event.locationName}, ${event.address}`}</PlaceholderMark>
-          </dd>
+          <dd className="inline">{`${event.locationName}, ${event.address}`}</dd>
         </div>
       </dl>
 
       <div className="mt-8 flex flex-wrap gap-3">
+        <a
+          href={event.ticketUrl}
+          className={cn(
+            buttonVariants({ variant: "default" }),
+            "h-11 bg-[#ebddd2] px-5 text-marigold hover:bg-[#ebddd2]/80",
+          )}
+        >
+          Get Tickets
+        </a>
         <a
           href={`/api/events/${event.slug}/ics`}
           className={cn(buttonVariants({ variant: "default" }), "h-11 px-5")}

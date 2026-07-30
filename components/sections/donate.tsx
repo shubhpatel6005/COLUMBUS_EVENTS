@@ -2,7 +2,6 @@
 
 import { useId, useState } from "react";
 
-import { PlaceholderMark } from "@/components/content/placeholder-mark";
 import { cn } from "@/lib/utils";
 import { taxDisclaimer } from "@/content/donate";
 
@@ -65,9 +64,7 @@ export function Donate() {
         <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">
           Support Our Events
         </h2>
-        <p className="mt-4 text-muted-foreground">
-          <PlaceholderMark>{taxDisclaimer}</PlaceholderMark>
-        </p>
+        <p className="mt-4 text-muted-foreground">{taxDisclaimer}</p>
 
         <form onSubmit={handleSubmit} className="mt-8 text-left">
           <div

@@ -1,17 +1,43 @@
-import Link from "next/link";
+"use client";
 
-import { PlaceholderMark } from "@/components/content/placeholder-mark";
+import Image from "next/image";
+import Link from "next/link";
+import { motion, useReducedMotion } from "motion/react";
+import { useEffect, useState } from "react";
+
+import { buttonVariants } from "@/components/ui/button";
 import { events } from "@/content/events";
+import { cn } from "@/lib/utils";
+
+const ROTATE_INTERVAL_MS = 4000;
 
 export function UpcomingEvents() {
+  const [offset, setOffset] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (paused || shouldReduceMotion || events.length <= 1) return;
+
+    const id = setInterval(() => {
+      setOffset((current) => (current + 1) % events.length);
+    }, ROTATE_INTERVAL_MS);
+
+    return () => clearInterval(id);
+  }, [paused, shouldReduceMotion]);
+
   if (events.length === 0) return null;
+
+  const ordered = [...events.slice(offset), ...events.slice(0, offset)];
 
   return (
     <section
       id="events"
       className="scroll-mt-20 border-t border-border bg-background px-4 py-16"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
     >
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-5xl">
         <p className="text-center font-heading text-sm font-semibold tracking-widest text-turmeric uppercase">
           Upcoming
         </p>
@@ -19,25 +45,46 @@ export function UpcomingEvents() {
           Next Event
         </h2>
 
-        <ul className="mt-8 space-y-4">
-          {events.map((event) => (
-            <li key={event.slug}>
+        <div className="mt-10 grid gap-8 sm:grid-cols-3">
+          {ordered.map((event) => (
+            <motion.div
+              key={event.slug}
+              layout
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              className="flex flex-col items-center text-center"
+            >
               <Link
                 href={`/events/${event.slug}`}
-                className="block rounded-lg border border-border bg-card px-6 py-5 hover:bg-muted"
+                className="block w-full overflow-hidden rounded-lg"
               >
-                <p className="text-sm text-turmeric">
-                  {new Date(event.startDateTime).toLocaleDateString("en-US", {
-                    dateStyle: "long",
-                  })}
-                </p>
-                <p className="mt-1 font-heading text-lg font-semibold text-foreground">
-                  <PlaceholderMark>{event.title}</PlaceholderMark>
-                </p>
+                <Image
+                  src={event.imageSrc}
+                  alt={event.title}
+                  width={724}
+                  height={1024}
+                  className="h-auto w-full object-cover"
+                />
               </Link>
-            </li>
+              <p className="mt-4 text-sm text-turmeric">
+                {new Date(event.startDateTime).toLocaleDateString("en-US", {
+                  dateStyle: "long",
+                })}
+              </p>
+              <p className="mt-1 font-heading text-lg font-semibold text-foreground">
+                {event.title}
+              </p>
+              <a
+                href={event.ticketUrl}
+                className={cn(
+                  buttonVariants({ variant: "default" }),
+                  "mt-4 h-12 w-full bg-[#ebddd2] px-6 text-base text-marigold hover:bg-[#ebddd2]/80",
+                )}
+              >
+                Get Tickets
+              </a>
+            </motion.div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
