@@ -23,11 +23,11 @@ export function Hero() {
       </div>
 
       <div className="flex flex-col justify-center gap-6 bg-background px-6 py-16 sm:px-12 md:h-[640px] md:px-16">
-        <h1 className="font-heading text-4xl font-bold tracking-tight uppercase text-foreground sm:text-5xl">
-          Columbus <span className="text-turmeric">Indian</span> Community
+        <h1 className="font-heading text-4xl font-bold tracking-tight uppercase text-deep-violet sm:text-5xl">
+          Columbus <span className="text-deep-violet">Indian</span> Community
           Events
         </h1>
-        <p className="text-lg text-muted-foreground">
+        <p className="text-lg text-marigold">
           Free, inclusive cultural events for Columbus, Georgia — from the
           joyous festivities of Navratri to the colorful kite-flying
           extravaganza of Uttrayan.
@@ -37,7 +37,7 @@ export function Hero() {
             href="#donate"
             className={cn(
               buttonVariants({ variant: "default" }),
-              "h-12 px-6 text-base",
+              "h-12 bg-[#ebddd2] px-6 text-base text-marigold hover:bg-[#ebddd2]/80",
             )}
           >
             Support Our Events
@@ -46,7 +46,7 @@ export function Hero() {
             href="#gallery"
             className={cn(
               buttonVariants({ variant: "secondary" }),
-              "h-12 px-6 text-base",
+              "h-12 bg-[#ebddd2] px-6 text-base text-marigold hover:bg-[#ebddd2]/80",
             )}
           >
             See Event Photos

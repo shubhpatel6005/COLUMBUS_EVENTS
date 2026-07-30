@@ -40,11 +40,8 @@ Audience: local residents 25-65, mostly on phones, often on slow connections.
 - Build one section per session. Don't build multiple sections in one pass.
 
 ## Content TODOs (must be filled before launch)
-- `content/about.ts` — org name, mission, and "who runs it" are now real:
-  **Columbus Indian Community Events, Inc.**, a Columbus, GA nonprofit
-  hosting free Indian cultural events (Navratri, Uttrayan kite festival,
-  etc.), donor-funded. No stats block (events held/attendees/volunteers) —
-  removed per request; About is a single centered paragraph layout now.
+- `content/about.ts` is **done** — real final copy (org intro + donor/invite
+  paragraph), no placeholders left. Nothing to track here anymore.
 - `content/sponsors.ts` — confirm real tier names/prices/perks (currently
   example placeholders, same bracketed/highlighted treatment as About) and
   add real sponsor logos to `currentSponsors` once secured. Also need a real
@@ -121,11 +118,20 @@ headline).
     `text-marigold`, `bg-turmeric`, `text-turmeric`, `bg-ivory`, `text-ivory`,
     `bg-ink`, `text-ink`, plus standard shadcn semantic tokens (`bg-primary`,
     `bg-secondary`, `bg-accent`, etc.) remapped to this palette.
-  - One-off exception: the About section uses a hardcoded `bg-[#ebddd2]`
-    (soft beige) background per explicit request, with `text-foreground`
-    (Deep Violet, 11.5:1) for all its text — single centered paragraph
-    layout, no eyebrow label, no stats block. Not part of the token system
-    — don't propagate this bg to other sections without being asked.
+  - One-off exception: the About section uses a hardcoded `bg-deep-violet`
+    background with `text-marigold` for all its text (5.7:1, passes AA) per
+    explicit request — single centered paragraph layout, no eyebrow label,
+    no stats block, no PlaceholderMark (copy is final, nothing left to
+    flag). Not part of the token system — don't propagate this combo to
+    other sections without being asked.
+  - **Known accessibility regression, left as-is per explicit user
+    instruction**: the Hero's CTA buttons use `bg-[#ebddd2]` (soft beige)
+    with `text-marigold` — roughly **2:1 contrast**, well under the 4.5:1
+    AA floor this file otherwise mandates. The Hero subhead paragraph also
+    uses `text-marigold` on Ivory (~2.4:1). Both were flagged to the user
+    explicitly; they chose to keep iterating on other things instead of
+    fixing it. Don't "fix" this silently in a future session — it's a live
+    open question, not an oversight. Ask before changing.
 - Typefaces: display = **Playfair Display** (`font-heading`, CSS var
   `--font-playfair`, weights 400-900), body = **Inter** (`font-sans`, CSS
   var `--font-inter`). Both wired via `next/font/google` in `app/layout.tsx`.
@@ -141,7 +147,11 @@ headline).
 - Header: `bg-primary` (Marigold), solid, no transparency/blur. No brand
   text/logo in the header or mobile menu — removed per request. Active nav
   link is distinguished by weight + underline (not a color swap, since
-  there's no third color that reads well on Marigold).
+  there's no third color that reads well on Marigold). Nav link text is
+  `text-deep-violet` at full opacity — an earlier version used
+  `text-primary-foreground/75` for inactive links, which blends with the
+  Marigold bg into a muddy brownish tone rather than reading as clean
+  purple. Don't reintroduce opacity fades on text sitting over Marigold.
 - Header/section heights: header is `h-20` (not the Tailwind default);
   every anchor-scrolled section must use `scroll-mt-20` to match, or
   content will be hidden behind the sticky header on jump-to-anchor.

@@ -48,8 +48,8 @@ export function SiteHeader() {
                 aria-current={activeId === section.id ? "true" : undefined}
                 className={
                   activeId === section.id
-                    ? "text-sm font-semibold text-primary-foreground underline underline-offset-4"
-                    : "text-sm font-medium text-primary-foreground/75 hover:text-primary-foreground"
+                    ? "text-sm font-semibold text-deep-violet underline underline-offset-4"
+                    : "text-sm font-medium text-deep-violet hover:underline"
                 }
               >
                 {section.label}
@@ -64,7 +64,7 @@ export function SiteHeader() {
             aria-label="Open menu"
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
-            className="flex size-10 items-center justify-center rounded-lg text-primary-foreground hover:bg-deep-violet/10 md:hidden"
+            className="flex size-10 items-center justify-center rounded-lg text-deep-violet hover:bg-deep-violet/10 md:hidden"
           >
             <svg
               viewBox="0 0 24 24"
