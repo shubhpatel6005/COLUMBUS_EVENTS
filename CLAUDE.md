@@ -42,11 +42,14 @@ Audience: local residents 25-65, mostly on phones, often on slow connections.
 ## Content TODOs (must be filled before launch)
 - `content/about.ts` is **done** — real final copy (org intro + donor/invite
   paragraph), no placeholders left. Nothing to track here anymore.
-- `content/sponsors.ts` — confirm real tier names/prices/perks (currently
-  example placeholders, same bracketed/highlighted treatment as About) and
-  add real sponsor logos to `currentSponsors` once secured. Also need a real
-  sponsor deck PDF — the Sponsorship section currently just says "coming
-  soon" instead of linking to one.
+- `content/sponsors.ts` — the tier cards (Community/Supporter/Presenting)
+  were removed from the Sponsorship section per request, along with the
+  placeholder tier data. The section is now just heading + sponsor logo
+  wall ("be our first sponsor" prompt) + "Become a Sponsor" CTA. Still
+  need: real sponsor logos in `currentSponsors` once secured, and a real
+  sponsor deck PDF (currently just says "coming soon"). If tiers come
+  back later, re-add pricing data with the bracketed-placeholder
+  treatment used elsewhere, not invented numbers.
 - `content/donate.ts` is **done** — confirmed 501(c)(3) status from the
   org's own event flyers ("A 501(c)3 Nonprofit Organization"), real
   disclaimer in place. Still worth a quick sanity-check against the actual

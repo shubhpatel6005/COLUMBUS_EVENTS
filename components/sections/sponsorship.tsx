@@ -1,9 +1,8 @@
 import Link from "next/link";
 
-import { PlaceholderMark } from "@/components/content/placeholder-mark";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { currentSponsors, sponsorTiers } from "@/content/sponsors";
+import { currentSponsors } from "@/content/sponsors";
 
 export function Sponsorship() {
   return (
@@ -21,30 +20,7 @@ export function Sponsorship() {
           </h2>
         </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-3">
-          {sponsorTiers.map((tier) => (
-            <div
-              key={tier.name}
-              className="flex flex-col rounded-lg border border-border bg-card p-6"
-            >
-              <p className="font-heading text-lg font-semibold text-foreground">
-                {tier.name}
-              </p>
-              <p className="mt-1 font-heading text-3xl font-bold text-turmeric">
-                <PlaceholderMark>{tier.price}</PlaceholderMark>
-              </p>
-              <ul className="mt-4 flex-1 space-y-2 text-sm text-muted-foreground">
-                {tier.perks.map((perk) => (
-                  <li key={perk}>
-                    <PlaceholderMark>{perk}</PlaceholderMark>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-16 text-center">
+        <div className="mt-12 text-center">
           {currentSponsors.length > 0 ? (
             <div className="flex flex-wrap items-center justify-center gap-8">
               {currentSponsors.map((sponsor) => (
