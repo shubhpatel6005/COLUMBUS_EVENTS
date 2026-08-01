@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
+import { LogoMarquee } from "@/components/sponsors/logo-marquee";
 import { cn } from "@/lib/utils";
 import { currentSponsors } from "@/content/sponsors";
 
@@ -19,27 +20,22 @@ export function Sponsorship() {
             Partner with our events
           </h2>
         </div>
+      </div>
 
-        <div className="mt-12 text-center">
-          {currentSponsors.length > 0 ? (
-            <div className="flex flex-wrap items-center justify-center gap-8">
-              {currentSponsors.map((sponsor) => (
-                <span
-                  key={sponsor.name}
-                  className="text-sm font-medium text-muted-foreground"
-                >
-                  {sponsor.name}
-                </span>
-              ))}
-            </div>
-          ) : (
-            <p className="text-muted-foreground">
-              We&apos;re looking for our first sponsors — be the first to
-              partner with us.
-            </p>
-          )}
+      {currentSponsors.length > 0 ? (
+        <div className="mt-12 -mx-4">
+          <LogoMarquee sponsors={currentSponsors} />
         </div>
+      ) : (
+        <div className="mx-auto mt-12 max-w-5xl">
+          <p className="text-center text-muted-foreground">
+            We&apos;re looking for our first sponsors — be the first to
+            partner with us.
+          </p>
+        </div>
+      )}
 
+      <div className="mx-auto max-w-5xl">
         <div className="mt-10 flex flex-col items-center gap-3">
           <Link
             href="#contact"

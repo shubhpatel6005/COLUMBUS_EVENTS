@@ -50,13 +50,16 @@ Audience: local residents 25-65, mostly on phones, often on slow connections.
 ## Content TODOs (must be filled before launch)
 - `content/about.ts` is **done** — real final copy (org intro + donor/invite
   paragraph), no placeholders left. Nothing to track here anymore.
-- `content/sponsors.ts` — the tier cards (Community/Supporter/Presenting)
-  were removed from the Sponsorship section per request, along with the
-  placeholder tier data. The section is now just heading + sponsor logo
-  wall ("be our first sponsor" prompt) + "Become a Sponsor" CTA. Still
-  need: real sponsor logos in `currentSponsors` once secured, and a real
-  sponsor deck PDF (currently just says "coming soon"). If tiers come
-  back later, re-add pricing data with the bracketed-placeholder
+- `content/sponsors.ts` is **done** — the tier cards (Community/Supporter/
+  Presenting) were removed from the Sponsorship section per request, along
+  with the placeholder tier data. 27 real sponsor logos (dropped in
+  `public/images/Sponsorship`, gitignored raw originals — see Design
+  direction note below) now populate `currentSponsors` and render as a
+  continuously auto-scrolling logo marquee (`components/sponsors/
+  logo-marquee.tsx`), name printed under each logo, pausing on hover,
+  falling back to a static wrapped grid under reduced motion. Still need:
+  a real sponsor deck PDF (currently just says "coming soon"). If pricing
+  tiers come back later, re-add that data with the bracketed-placeholder
   treatment used elsewhere, not invented numbers.
 - `content/donate.ts` is **done** — confirmed 501(c)(3) status from the
   org's own event flyers ("A 501(c)3 Nonprofit Organization"), real
@@ -166,6 +169,18 @@ headline).
   the interval never starts if reduced motion is preferred. Keep this
   pattern (interval + layout animation + hover-pause + reduced-motion
   check) if more rotating/carousel UI gets added elsewhere.
+- Sponsorship logo wall (`components/sponsors/logo-marquee.tsx`) is a
+  continuously auto-scrolling marquee — pure CSS (`@keyframes marquee` in
+  `globals.css`, `translateX(0)` to `translateX(-50%)` over the sponsor
+  list duplicated twice for a seamless loop), paused via
+  `group-hover:[animation-play-state:paused]` rather than JS. Falls back
+  to a static wrapped grid (no animation) when `useReducedMotion` from
+  `lib/use-reduced-motion` is true. Every logo renders in a fixed-size
+  card (`h-24 w-44 sm:h-28 sm:w-52`, `object-contain`) so sizes stay
+  uniform regardless of each sponsor's native logo dimensions, with the
+  sponsor name printed underneath. It's a full-bleed section (breaks out
+  of the `mx-auto max-w-5xl` wrapper via `-mx-4`), same full-bleed
+  exception pattern as the Hero.
 - **Bug found in `framer-motion`'s own `useReducedMotion()`** (re-exported
   from `motion/react`): it calls
   `window.matchMedia("(prefers-reduced-motion)")` — missing `: reduce` —

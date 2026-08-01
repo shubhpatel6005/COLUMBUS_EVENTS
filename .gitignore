@@ -48,3 +48,4 @@ next-env.d.ts
 # raw/unoptimized source photos — only the resized versions in
 # public/images/gallery etc. get committed
 /public/images/PHOTOS
+/public/images/Sponsorship
