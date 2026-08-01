@@ -65,9 +65,13 @@ Audience: local residents 25-65, mostly on phones, often on slow connections.
   org's own event flyers ("A 501(c)3 Nonprofit Organization"), real
   disclaimer in place. Still worth a quick sanity-check against the actual
   IRS determination letter/EIN before launch, but not a placeholder anymore.
-- `content/contact.ts` — confirm a real response-time commitment and, if
-  there's a public office, a real address. No social links or map embed were
-  added since there's no confirmed address/accounts yet — add them once real.
+- `content/contact.ts` was **deleted** — it only held a placeholder
+  response-time line and an unused placeholder address, both removed from
+  `components/sections/contact.tsx` per request rather than filled in. No
+  social links or map embed were added since there's no confirmed
+  address/accounts yet. If a real response-time commitment or public
+  address surfaces later, add them back as plain copy in the section
+  (a dedicated content file isn't needed for one or two lines).
 - `content/events.ts` is **mostly done** — 3 real events (6th Annual Garba
   Musical Night, one night each for Geeta Rabari/Divya Chaudhary/Aishwaria
   Majumdar, Sept 4-6 2026, Columbus Civic Center — sourced from the org's

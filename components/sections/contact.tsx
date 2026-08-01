@@ -3,8 +3,6 @@
 import Script from "next/script";
 import { useEffect, useId, useRef, useState } from "react";
 
-import { PlaceholderMark } from "@/components/content/placeholder-mark";
-import { contactInfo } from "@/content/contact";
 import { contactSubjects } from "@/lib/validation";
 import { cn } from "@/lib/utils";
 
@@ -102,10 +100,7 @@ export function Contact() {
         <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">
           Message sent
         </h2>
-        <p className="mt-4 text-muted-foreground">
-          Thanks for reaching out —{" "}
-          <PlaceholderMark>{contactInfo.responseTime}</PlaceholderMark>
-        </p>
+        <p className="mt-4 text-muted-foreground">Thanks for reaching out.</p>
       </section>
     );
   }
@@ -123,9 +118,6 @@ export function Contact() {
           <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">
             Get in Touch
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            <PlaceholderMark>{contactInfo.responseTime}</PlaceholderMark>
-          </p>
         </div>
 
         <form
