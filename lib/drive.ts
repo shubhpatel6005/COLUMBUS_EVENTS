@@ -16,6 +16,7 @@ export type GalleryPhoto = {
   name: string;
   width: number;
   height: number;
+  src: string;
 };
 
 async function listGalleryPhotos(): Promise<GalleryPhoto[]> {
@@ -36,6 +37,7 @@ async function listGalleryPhotos(): Promise<GalleryPhoto[]> {
       name: file.name ?? "",
       width: file.imageMediaMetadata?.width ?? 1200,
       height: file.imageMediaMetadata?.height ?? 800,
+      src: `/api/photo/${file.id}`,
     }));
 }
 

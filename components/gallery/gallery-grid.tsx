@@ -60,7 +60,7 @@ export function GalleryGrid({ photos }: { photos: GalleryPhoto[] }) {
             style={{ breakInside: "avoid" }}
           >
             <Image
-              src={`/api/photo/${photo.id}`}
+              src={photo.src}
               alt={photo.name}
               width={photo.width}
               height={photo.height}

@@ -15,6 +15,14 @@ Audience: local residents 25-65, mostly on phones, often on slow connections.
 - Org: Columbus Indian Community Events, Inc. — registered nonprofit,
   donations not ticketing.
 - Gallery: Google Drive folder managed manually by the org, no visitor uploads.
+  Until Drive is configured, 5 real event photos live in
+  `content/gallery.ts` (`localGalleryPhotos`) and always render first,
+  with Drive photos appended after if `DRIVE_FOLDER_ID` is set — see
+  `components/sections/gallery.tsx`. Source images optimized via `sharp`
+  (resized to 1600px long side, ~130-285KB each) into
+  `public/images/gallery/`; raw originals stay in `public/images/PHOTOS/`
+  (gitignored, not committed — same pattern to follow for future photo
+  drops: resize before committing, don't commit raw camera originals).
 - Donations: Stripe Checkout (custom code, not a Givebutter/Donorbox embed).
 
 - Design direction: **Marigold Bloom** (see below) — deep violet + marigold

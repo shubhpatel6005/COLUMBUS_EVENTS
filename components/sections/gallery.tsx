@@ -1,28 +1,22 @@
 import { Suspense } from "react";
 
 import { GalleryGrid } from "@/components/gallery/gallery-grid";
-import { getGalleryPhotos } from "@/lib/drive";
+import { localGalleryPhotos } from "@/content/gallery";
+import { getGalleryPhotos, type GalleryPhoto } from "@/lib/drive";
 import { GallerySkeleton } from "./gallery-skeleton";
 
 async function GalleryContent() {
-  if (!process.env.DRIVE_FOLDER_ID) {
-    return (
-      <p className="text-center text-muted-foreground">
-        The gallery isn&apos;t connected yet — check back soon.
-      </p>
-    );
+  let drivePhotos: GalleryPhoto[] = [];
+  if (process.env.DRIVE_FOLDER_ID) {
+    try {
+      drivePhotos = await getGalleryPhotos();
+    } catch {
+      // Fall through to local photos — Drive being unavailable shouldn't
+      // hide the photos we already have.
+    }
   }
 
-  let photos;
-  try {
-    photos = await getGalleryPhotos();
-  } catch {
-    return (
-      <p className="text-center text-muted-foreground">
-        We couldn&apos;t load event photos right now. Please try again later.
-      </p>
-    );
-  }
+  const photos = [...localGalleryPhotos, ...drivePhotos];
 
   if (photos.length === 0) {
     return (
