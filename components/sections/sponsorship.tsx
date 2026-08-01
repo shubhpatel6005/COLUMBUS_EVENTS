@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
 import { LogoMarquee } from "@/components/sponsors/logo-marquee";
+import { StatCounter } from "@/components/sponsors/stat-counter";
 import { cn } from "@/lib/utils";
 import { currentSponsors } from "@/content/sponsors";
 
@@ -34,6 +35,16 @@ export function Sponsorship() {
           </p>
         </div>
       )}
+
+      <div className="mx-auto mt-12 flex max-w-5xl justify-center gap-16 sm:gap-24">
+        <StatCounter target={50} suffix="+" label="Sponsors" />
+        <StatCounter
+          target={500000}
+          prefix="$"
+          suffix="+"
+          label="Sponsorship Amount"
+        />
+      </div>
 
       <div className="mx-auto max-w-5xl">
         <div className="mt-10 flex flex-col items-center gap-3">
