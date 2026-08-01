@@ -57,8 +57,11 @@ Audience: local residents 25-65, mostly on phones, often on slow connections.
   direction note below) now populate `currentSponsors` and render as a
   continuously auto-scrolling logo marquee (`components/sponsors/
   logo-marquee.tsx`), name printed under each logo, pausing on hover,
-  falling back to a static wrapped grid under reduced motion. Still need:
-  a real sponsor deck PDF (currently just says "coming soon"). If pricing
+  falling back to a static wrapped grid under reduced motion. Below the
+  logos, a "50+ Sponsors" / "$500,000+ Sponsorship Amount" stat pair
+  (`components/sponsors/stat-counter.tsx`) counts up on scroll into view.
+  The "Sponsor deck PDF coming soon" line was removed per request — add
+  a real link/button there if a deck gets made. If pricing
   tiers come back later, re-add that data with the bracketed-placeholder
   treatment used elsewhere, not invented numbers.
 - `content/donate.ts` is **done** — confirmed 501(c)(3) status from the

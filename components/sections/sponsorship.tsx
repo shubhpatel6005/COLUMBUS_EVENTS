@@ -54,9 +54,6 @@ export function Sponsorship() {
           >
             Become a Sponsor
           </Link>
-          <p className="text-xs text-muted-foreground">
-            Sponsor deck PDF coming soon.
-          </p>
         </div>
       </div>
     </section>
