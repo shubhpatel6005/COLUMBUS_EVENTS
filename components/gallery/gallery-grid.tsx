@@ -56,17 +56,30 @@ export function GalleryGrid({ photos }: { photos: GalleryPhoto[] }) {
             }}
             type="button"
             onClick={() => setOpenIndex(index)}
-            className="mb-4 block w-full overflow-hidden rounded-lg bg-muted focus-visible:ring-2 focus-visible:ring-ring"
-            style={{ breakInside: "avoid" }}
+            className="group relative mb-4 block w-full overflow-hidden rounded-lg bg-muted [perspective:1000px] focus-visible:ring-2 focus-visible:ring-ring"
+            style={{
+              breakInside: "avoid",
+              aspectRatio: `${photo.width} / ${photo.height}`,
+            }}
           >
-            <Image
-              src={photo.src}
-              alt={photo.name}
-              width={photo.width}
-              height={photo.height}
-              sizes="(min-width: 640px) 33vw, 50vw"
-              className="h-auto w-full object-cover"
-            />
+            <div className="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus-visible:[transform:rotateY(180deg)] motion-reduce:transition-none motion-reduce:group-hover:[transform:none] motion-reduce:group-focus-visible:[transform:none]">
+              <Image
+                src={photo.src}
+                alt={photo.name}
+                width={photo.width}
+                height={photo.height}
+                sizes="(min-width: 640px) 33vw, 50vw"
+                className="absolute inset-0 h-full w-full object-cover [backface-visibility:hidden]"
+              />
+              <Image
+                src={photo.src}
+                alt={photo.name}
+                width={photo.width}
+                height={photo.height}
+                sizes="(min-width: 640px) 33vw, 50vw"
+                className="absolute inset-0 h-full w-full object-cover [backface-visibility:hidden] [transform:rotateY(180deg)]"
+              />
+            </div>
           </button>
         ))}
       </div>
