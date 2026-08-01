@@ -27,7 +27,7 @@ export function Hero() {
           Columbus <span className="text-deep-violet">Indian</span> Community
           Events
         </h1>
-        <p className="text-lg text-marigold">
+        <p className="font-heading text-lg text-marigold">
           Free, inclusive cultural events for Columbus, Georgia — from the
           joyous festivities of Navratri to the colorful kite-flying
           extravaganza of Uttrayan.
