@@ -37,7 +37,7 @@ export function Hero() {
             href="#donate"
             className={cn(
               buttonVariants({ variant: "default" }),
-              "h-12 bg-[#ebddd2] px-6 text-base text-marigold hover:bg-[#ebddd2]/80",
+              "h-12 bg-[#ebddd2] px-6 font-heading text-base text-marigold hover:bg-primary hover:text-ivory active:bg-primary active:text-ivory",
             )}
           >
             Support Our Events
@@ -46,7 +46,7 @@ export function Hero() {
             href="#gallery"
             className={cn(
               buttonVariants({ variant: "secondary" }),
-              "h-12 bg-[#ebddd2] px-6 text-base text-marigold hover:bg-[#ebddd2]/80",
+              "h-12 bg-[#ebddd2] px-6 font-heading text-base text-marigold hover:bg-primary hover:text-ivory active:bg-primary active:text-ivory",
             )}
           >
             See Event Photos

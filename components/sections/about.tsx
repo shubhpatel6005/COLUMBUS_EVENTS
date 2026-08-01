@@ -10,8 +10,12 @@ export function About() {
         <h2 className="font-heading text-4xl font-bold text-marigold sm:text-5xl">
           {about.orgName}
         </h2>
-        <p className="mt-8 text-xl text-marigold">{about.mission}</p>
-        <p className="mt-6 text-lg text-marigold">{about.whoRunsIt}</p>
+        <p className="mt-8 font-heading text-xl text-marigold">
+          {about.mission}
+        </p>
+        <p className="mt-6 font-heading text-lg text-marigold">
+          {about.whoRunsIt}
+        </p>
       </div>
     </section>
   );
