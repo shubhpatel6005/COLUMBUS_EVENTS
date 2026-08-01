@@ -217,19 +217,21 @@ headline).
   Brand *text* ("Columbus Events") was removed per an earlier request and
   hasn't come back — only the image logo. Mobile menu's own top bar still
   has no logo (only the close button) — hasn't been asked for there yet.
-  Active nav link is distinguished by weight + underline (not a color swap, since
-  there's no third color that reads well on Marigold). Nav link text is
-  `text-deep-violet` at full opacity — an earlier version used
-  `text-primary-foreground/75` for inactive links, which blends with the
-  Marigold bg into a muddy brownish tone rather than reading as clean
-  purple. Don't reintroduce opacity fades on text sitting over Marigold.
-  **Exception, explicitly requested**: the "Next Event" link (`#events`,
-  `components/nav/site-header.tsx` `SECTIONS`) turns `text-ivory` instead
-  of `text-deep-violet` when active, per user request — another
-  deliberate low-contrast choice on Marigold (~2.4:1, same tradeoff as
-  the Hero CTAs) alongside the rest of the nav, which keeps the
-  deep-violet active style. Nav *order* is About, Next Event, Gallery,
-  Sponsors, Donate, Contact — but the actual page/section order (in
+  Active nav link is distinguished by weight + underline plus a color
+  swap to `text-ivory` (white-reading) — per explicit request this
+  applies to every link's active state now, not just inactive-vs-active
+  weight. This is a **deliberate low-contrast choice on Marigold**
+  (~2.4:1, same tradeoff already flagged for the Hero CTAs) — don't
+  "fix" it back to deep-violet without asking; it was a color swap the
+  user asked for on purpose. Inactive nav link text is `text-deep-violet`
+  at full opacity — an earlier version used `text-primary-foreground/75`
+  for inactive links, which blends with the Marigold bg into a muddy
+  brownish tone rather than reading as clean purple. Don't reintroduce
+  opacity fades on text sitting over Marigold. Nav link font is
+  `font-heading` (Playfair Display), matching the "Columbus Indian
+  Community Events" headline typeface, not the site's default Inter
+  body font. Nav *order* is About, Next Event, Gallery, Sponsors,
+  Donate, Contact — but the actual page/section order (in
   `app/page.tsx`) stays Hero, Next Event (`#events`), About, Gallery,
   Sponsorship, Donate, Contact. These two orders are intentionally
   different — don't "fix" the nav to match page order or vice versa.

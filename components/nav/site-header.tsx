@@ -62,10 +62,8 @@ export function SiteHeader() {
                 aria-current={activeId === section.id ? "true" : undefined}
                 className={
                   activeId === section.id
-                    ? section.id === "events"
-                      ? "text-sm font-semibold text-ivory underline underline-offset-4"
-                      : "text-sm font-semibold text-deep-violet underline underline-offset-4"
-                    : "text-sm font-medium text-deep-violet hover:underline"
+                    ? "font-heading text-sm font-semibold text-ivory underline underline-offset-4"
+                    : "font-heading text-sm font-medium text-deep-violet hover:underline"
                 }
               >
                 {section.label}
