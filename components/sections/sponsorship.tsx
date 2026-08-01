@@ -36,7 +36,7 @@ export function Sponsorship() {
         </div>
       )}
 
-      <div className="mx-auto mt-12 flex max-w-5xl justify-center gap-16 sm:gap-24">
+      <div className="mx-auto mt-12 flex max-w-5xl flex-wrap justify-center gap-x-6 gap-y-8 px-2 sm:gap-x-16 lg:gap-x-24">
         <StatCounter target={50} suffix="+" label="Sponsors" />
         <StatCounter
           target={500000}

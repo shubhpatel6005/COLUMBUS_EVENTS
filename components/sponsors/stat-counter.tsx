@@ -57,15 +57,18 @@ export function StatCounter({
   const { value, ref } = useCountUp(target);
 
   return (
-    <div ref={ref} className="border-l-2 border-border pl-6 text-left sm:pl-8">
-      <p className="font-heading text-5xl font-bold text-foreground tabular-nums sm:text-6xl">
+    <div
+      ref={ref}
+      className="border-l-2 border-border pl-4 text-left sm:pl-6 lg:pl-8"
+    >
+      <p className="font-heading text-3xl font-bold text-foreground tabular-nums sm:text-5xl lg:text-6xl">
         {prefix && (
           <span className="mr-1 align-[0.2em] text-[0.55em]">{prefix}</span>
         )}
         {value.toLocaleString()}
         {suffix}
       </p>
-      <p className="mt-3 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
+      <p className="mt-2 text-[0.65rem] font-semibold tracking-widest text-muted-foreground uppercase sm:mt-3 sm:text-xs">
         {label}
       </p>
     </div>

@@ -60,8 +60,15 @@ Audience: local residents 25-65, mostly on phones, often on slow connections.
   falling back to a static wrapped grid under reduced motion. Below the
   logos, a "50+ Sponsors" / "$500,000+ Sponsorship Amount" stat pair
   (`components/sponsors/stat-counter.tsx`) counts up on scroll into view.
-  The "Sponsor deck PDF coming soon" line was removed per request — add
-  a real link/button there if a deck gets made. If pricing
+  Its numbers are responsive (`text-3xl sm:text-5xl lg:text-6xl`, with a
+  matching `flex-wrap` + smaller gap on the container) — the original
+  fixed `text-5xl`/`gap-16` overflowed horizontally below ~400px
+  viewport width (confirmed via `document.documentElement.scrollWidth`
+  checks at 320/375/390px). Keep numeric stat callouts responsive by
+  default; verify with a scrollWidth check, not just visual inspection,
+  since overflow at narrow widths is easy to miss in a normal browser
+  window. The "Sponsor deck PDF coming soon" line was removed per
+  request — add a real link/button there if a deck gets made. If pricing
   tiers come back later, re-add that data with the bracketed-placeholder
   treatment used elsewhere, not invented numbers.
 - `content/donate.ts` is **done** — confirmed 501(c)(3) status from the
