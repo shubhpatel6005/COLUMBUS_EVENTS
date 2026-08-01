@@ -8,6 +8,7 @@ import { MobileMenu, type NavSection } from "./mobile-menu";
 
 const SECTIONS: NavSection[] = [
   { id: "about", label: "About" },
+  { id: "events", label: "Next Event" },
   { id: "gallery", label: "Gallery" },
   { id: "sponsors", label: "Sponsors" },
   { id: "donate", label: "Donate" },
@@ -61,7 +62,9 @@ export function SiteHeader() {
                 aria-current={activeId === section.id ? "true" : undefined}
                 className={
                   activeId === section.id
-                    ? "text-sm font-semibold text-deep-violet underline underline-offset-4"
+                    ? section.id === "events"
+                      ? "text-sm font-semibold text-ivory underline underline-offset-4"
+                      : "text-sm font-semibold text-deep-violet underline underline-offset-4"
                     : "text-sm font-medium text-deep-violet hover:underline"
                 }
               >

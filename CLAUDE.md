@@ -223,6 +223,16 @@ headline).
   `text-primary-foreground/75` for inactive links, which blends with the
   Marigold bg into a muddy brownish tone rather than reading as clean
   purple. Don't reintroduce opacity fades on text sitting over Marigold.
+  **Exception, explicitly requested**: the "Next Event" link (`#events`,
+  `components/nav/site-header.tsx` `SECTIONS`) turns `text-ivory` instead
+  of `text-deep-violet` when active, per user request — another
+  deliberate low-contrast choice on Marigold (~2.4:1, same tradeoff as
+  the Hero CTAs) alongside the rest of the nav, which keeps the
+  deep-violet active style. Nav *order* is About, Next Event, Gallery,
+  Sponsors, Donate, Contact — but the actual page/section order (in
+  `app/page.tsx`) stays Hero, Next Event (`#events`), About, Gallery,
+  Sponsorship, Donate, Contact. These two orders are intentionally
+  different — don't "fix" the nav to match page order or vice versa.
 - Header/section heights: header is `h-20` (not the Tailwind default);
   every anchor-scrolled section must use `scroll-mt-20` to match, or
   content will be hidden behind the sticky header on jump-to-anchor.
