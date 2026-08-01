@@ -17,7 +17,7 @@ function LogoTile({ sponsor }: { sponsor: Sponsor }) {
           className="h-full w-full object-contain"
         />
       </div>
-      <p className="mt-2 text-center text-xs font-medium text-muted-foreground">
+      <p className="mt-2 text-center font-heading text-sm font-semibold text-foreground">
         {sponsor.name}
       </p>
     </div>
