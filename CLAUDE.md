@@ -23,7 +23,19 @@ Audience: local residents 25-65, mostly on phones, often on slow connections.
   `public/images/gallery/`; raw originals stay in `public/images/PHOTOS/`
   (gitignored, not committed — same pattern to follow for future photo
   drops: resize before committing, don't commit raw camera originals).
-- Donations: Stripe Checkout (custom code, not a Givebutter/Donorbox embed).
+- Donations: **Square Checkout** (custom code via the `square` npm SDK's
+  Payment Links API — `client.checkout.paymentLinks.create(...)`, not a
+  Givebutter/Donorbox embed). Originally built on Stripe, switched to
+  Square per explicit request — see `lib/square.ts`,
+  `app/api/checkout/route.ts`, `app/api/webhooks/square/route.ts`.
+  One-time donations only — Square's Subscriptions API requires a
+  pre-created Catalog subscription plan with fixed price tiers, unlike
+  Stripe's dynamic `price_data`, so it can't support an arbitrary
+  custom recurring amount the same way. The "Monthly" toggle was
+  removed from `components/sections/donate.tsx` for this reason —
+  don't re-add recurring donations without first creating Catalog
+  subscription plan variations in the Square dashboard (and deciding
+  whether custom monthly amounts get dropped in favor of preset tiers).
 
 - Design direction: **Marigold Bloom** (see below) — deep violet + marigold
   + terracotta, Playfair Display serif, full-bleed split image/text hero.
@@ -42,7 +54,7 @@ Audience: local residents 25-65, mostly on phones, often on slow connections.
   on every image, `prefers-reduced-motion` respected.
 - Do not add dependencies without saying why.
 - Never trust a donation amount sent from the browser — validate server-side
-  (min/max bounds) in the Stripe checkout route.
+  (min/max bounds) in the Square checkout route.
 - The Drive photo proxy route must verify a file's parent folder matches
   `DRIVE_FOLDER_ID` before serving it — do not build an open proxy.
 - Build one section per session. Don't build multiple sections in one pass.
@@ -97,10 +109,18 @@ Audience: local residents 25-65, mostly on phones, often on slow connections.
   rangoli, kite festival, temple imagery) before launch.
 
 ## External service setup still needed
-- **Stripe** (donations): needs a real Stripe account, `STRIPE_SECRET_KEY`,
-  and a webhook endpoint registered against the deployed URL for
-  `STRIPE_WEBHOOK_SECRET`. Code is built and validates amounts server-side
-  (min $1 / max $10,000) but is untested against a live Stripe account.
+- **Square** (donations): `SQUARE_ACCESS_TOKEN` / `SQUARE_LOCATION_ID` /
+  `NEXT_PUBLIC_SQUARE_APPLICATION_ID` are set to real **sandbox**
+  credentials (`SQUARE_ENVIRONMENT=sandbox`) and confirmed working
+  end-to-end — a real Payment Link is created and resolves to Square's
+  hosted checkout. Still needed before launch: (1) switch to
+  **production** credentials from the org's real Square account and set
+  `SQUARE_ENVIRONMENT=production`; (2) register a webhook endpoint in
+  the Square dashboard against the deployed URL
+  (`https://<domain>/api/webhooks/square`, event type `payment.updated`)
+  to get `SQUARE_WEBHOOK_SIGNATURE_KEY` — donation receipt emails don't
+  fire without it. Validates amounts server-side (min $1 / max $10,000)
+  in `app/api/checkout/route.ts`.
 - **Google Drive** (gallery): needs the Cloud project + service account +
   shared Drive folder from the plan's Phase 3 Step 1, then
   `GOOGLE_CLIENT_EMAIL` / `GOOGLE_PRIVATE_KEY` / `DRIVE_FOLDER_ID`.

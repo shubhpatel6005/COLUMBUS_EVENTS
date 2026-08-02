@@ -1,7 +1,9 @@
+import { randomUUID } from "node:crypto";
+
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import { getStripe } from "@/lib/stripe";
+import { getSquare } from "@/lib/square";
 
 const MIN_AMOUNT_CENTS = 100; // $1
 const MAX_AMOUNT_CENTS = 1_000_000; // $10,000
@@ -12,11 +14,10 @@ const checkoutSchema = z.object({
     .int()
     .min(MIN_AMOUNT_CENTS, "Enter at least $1.")
     .max(MAX_AMOUNT_CENTS, "Enter $10,000 or less."),
-  interval: z.enum(["once", "monthly"]),
 });
 
 export async function POST(request: Request) {
-  if (!process.env.STRIPE_SECRET_KEY) {
+  if (!process.env.SQUARE_ACCESS_TOKEN || !process.env.SQUARE_LOCATION_ID) {
     return NextResponse.json(
       { error: "Donations aren't set up yet." },
       { status: 503 },
@@ -33,32 +34,33 @@ export async function POST(request: Request) {
     );
   }
 
-  const { amountCents, interval } = parsed.data;
+  const { amountCents } = parsed.data;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
   try {
-    const session = await getStripe().checkout.sessions.create({
-      mode: interval === "monthly" ? "subscription" : "payment",
-      line_items: [
-        {
-          quantity: 1,
-          price_data: {
-            currency: "usd",
-            unit_amount: amountCents,
-            product_data: {
-              name: "Donation to Columbus Community Events",
-            },
-            ...(interval === "monthly"
-              ? { recurring: { interval: "month" as const } }
-              : {}),
-          },
+    const { paymentLink } = await getSquare().checkout.paymentLinks.create({
+      idempotencyKey: randomUUID(),
+      quickPay: {
+        name: "Donation to Columbus Indian Community Events",
+        priceMoney: {
+          amount: BigInt(amountCents),
+          currency: "USD",
         },
-      ],
-      success_url: `${siteUrl}/donate/thanks?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${siteUrl}/#donate`,
+        locationId: process.env.SQUARE_LOCATION_ID,
+      },
+      checkoutOptions: {
+        redirectUrl: `${siteUrl}/donate/thanks`,
+      },
     });
 
-    return NextResponse.json({ url: session.url });
+    if (!paymentLink?.url) {
+      return NextResponse.json(
+        { error: "Could not start checkout. Please try again." },
+        { status: 502 },
+      );
+    }
+
+    return NextResponse.json({ url: paymentLink.url });
   } catch {
     return NextResponse.json(
       { error: "Could not start checkout. Please try again." },

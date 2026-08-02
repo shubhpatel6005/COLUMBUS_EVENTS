@@ -8,7 +8,6 @@ import { taxDisclaimer } from "@/content/donate";
 const PRESET_AMOUNTS = [25, 50, 100];
 
 export function Donate() {
-  const [interval, setInterval] = useState<"once" | "monthly">("once");
   const [selectedAmount, setSelectedAmount] = useState<number | "custom">(50);
   const [customAmount, setCustomAmount] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -34,7 +33,6 @@ export function Donate() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           amountCents: Math.round(amountDollars * 100),
-          interval,
         }),
       });
       const data = await res.json();
@@ -69,32 +67,8 @@ export function Donate() {
         <form onSubmit={handleSubmit} className="mt-8 text-left">
           <div
             role="radiogroup"
-            aria-label="Donation frequency"
-            className="mx-auto flex w-fit rounded-lg border border-border bg-card p-1"
-          >
-            {(["once", "monthly"] as const).map((value) => (
-              <button
-                key={value}
-                type="button"
-                role="radio"
-                aria-checked={interval === value}
-                onClick={() => setInterval(value)}
-                className={cn(
-                  "rounded-md px-4 py-1.5 text-sm font-medium transition-colors",
-                  interval === value
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                {value === "once" ? "One-time" : "Monthly"}
-              </button>
-            ))}
-          </div>
-
-          <div
-            role="radiogroup"
             aria-label="Donation amount"
-            className="mt-6 grid grid-cols-4 gap-3"
+            className="grid grid-cols-4 gap-3"
           >
             {PRESET_AMOUNTS.map((amount) => (
               <button
@@ -164,11 +138,11 @@ export function Donate() {
           >
             {submitting
               ? "Redirecting to checkout…"
-              : `Donate $${amountDollars || 0}${interval === "monthly" ? "/month" : ""}`}
+              : `Donate $${amountDollars || 0}`}
           </button>
 
           <p className="mt-3 text-center text-xs text-muted-foreground">
-            You&apos;ll be redirected to Stripe&apos;s secure checkout.
+            You&apos;ll be redirected to Square&apos;s secure checkout.
           </p>
         </form>
       </div>
