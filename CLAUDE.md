@@ -215,6 +215,28 @@ headline).
   sponsor name printed underneath. It's a full-bleed section (breaks out
   of the `mx-auto max-w-5xl` wrapper via `-mx-4`), same full-bleed
   exception pattern as the Hero.
+- **The newsletter bar (`components/newsletter/newsletter-bar.tsx`) covers
+  the bottom of every page** — it's `fixed inset-x-0 bottom-0` with no
+  space reserved for it, so without a fix the last ~70-115px of content
+  (varies by breakpoint since the bar wraps to 2 lines on narrow
+  screens) is permanently unreachable, even scrolled all the way down
+  (confirmed via `getBoundingClientRect()` comparison after
+  `window.scrollTo(0, document.body.scrollHeight)`, not just visual
+  inspection). Fixed by having the bar measure its own height via
+  `ResizeObserver` and write it to a `--newsletter-bar-height` CSS
+  custom property on `<html>`, which `body`'s `padding-bottom` in
+  `globals.css` reads (reset to `0px` on dismiss/unmount). If the bar's
+  content or breakpoints change, this stays correct automatically —
+  don't replace it with a static per-breakpoint padding guess.
+- Donate section's preset-amount buttons (`components/sections/
+  donate.tsx`) use `text-xs`/`px-1.5`/`py-2.5` below `sm:` and
+  `text-sm`/`px-3`/`py-2` at `sm:` and up — the original fixed
+  `px-3`/`text-sm` at all sizes let "Custom" overflow its own button by
+  a few px at 320px width (`scrollWidth` vs `clientWidth` mismatch, not
+  page-level overflow so it didn't show up in a scrollWidth sweep of
+  the page — check individual interactive elements too, not just
+  `document.documentElement`). The bumped `py-2.5` on mobile keeps the
+  tap target comfortable after shrinking the font.
 - **Bug found in `framer-motion`'s own `useReducedMotion()`** (re-exported
   from `motion/react`): it calls
   `window.matchMedia("(prefers-reduced-motion)")` — missing `: reduce` —

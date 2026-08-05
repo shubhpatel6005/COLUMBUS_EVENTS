@@ -68,7 +68,7 @@ export function Donate() {
           <div
             role="radiogroup"
             aria-label="Donation amount"
-            className="grid grid-cols-4 gap-3"
+            className="grid grid-cols-4 gap-2 sm:gap-3"
           >
             {PRESET_AMOUNTS.map((amount) => (
               <button
@@ -78,7 +78,7 @@ export function Donate() {
                 aria-checked={selectedAmount === amount}
                 onClick={() => setSelectedAmount(amount)}
                 className={cn(
-                  "rounded-lg border px-3 py-2 text-sm font-semibold",
+                  "rounded-lg border px-1.5 py-2.5 text-xs font-semibold sm:px-3 sm:py-2 sm:text-sm",
                   selectedAmount === amount
                     ? "border-primary bg-primary/10 text-turmeric"
                     : "border-border text-foreground hover:bg-muted",
@@ -93,7 +93,7 @@ export function Donate() {
               aria-checked={selectedAmount === "custom"}
               onClick={() => setSelectedAmount("custom")}
               className={cn(
-                "rounded-lg border px-3 py-2 text-sm font-semibold",
+                "rounded-lg border px-1.5 py-2.5 text-xs font-semibold sm:px-3 sm:py-2 sm:text-sm",
                 selectedAmount === "custom"
                   ? "border-primary bg-primary/10 text-turmeric"
                   : "border-border text-foreground hover:bg-muted",

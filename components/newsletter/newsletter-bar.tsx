@@ -1,11 +1,12 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 
 import { NewsletterSignup } from "./newsletter-signup";
 
 const DISMISS_KEY = "columbus-events-newsletter-bar-dismissed";
 const DISMISS_EVENT = "columbus-events-newsletter-bar-dismissed-change";
+const HEIGHT_VAR = "--newsletter-bar-height";
 
 function subscribe(callback: () => void) {
   window.addEventListener(DISMISS_EVENT, callback);
@@ -26,6 +27,28 @@ export function NewsletterBar() {
     getSnapshot,
     getServerSnapshot,
   );
+  const barRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const node = barRef.current;
+    if (dismissed || !node) {
+      document.documentElement.style.setProperty(HEIGHT_VAR, "0px");
+      return;
+    }
+
+    const observer = new ResizeObserver(([entry]) => {
+      document.documentElement.style.setProperty(
+        HEIGHT_VAR,
+        `${entry.contentRect.height}px`,
+      );
+    });
+    observer.observe(node);
+
+    return () => {
+      observer.disconnect();
+      document.documentElement.style.setProperty(HEIGHT_VAR, "0px");
+    };
+  }, [dismissed]);
 
   function dismiss() {
     window.localStorage.setItem(DISMISS_KEY, "1");
@@ -36,6 +59,7 @@ export function NewsletterBar() {
 
   return (
     <div
+      ref={barRef}
       role="region"
       aria-label="Newsletter signup"
       className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card px-4 py-3 shadow-[0_-2px_10px_rgba(0,0,0,0.08)]"

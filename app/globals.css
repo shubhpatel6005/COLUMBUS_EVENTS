@@ -134,6 +134,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    padding-bottom: var(--newsletter-bar-height, 0px);
+    transition: padding-bottom 0.2s ease;
   }
   html {
     @apply font-sans;
