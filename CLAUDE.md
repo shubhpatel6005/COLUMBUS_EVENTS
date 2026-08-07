@@ -237,6 +237,40 @@ headline).
   the page — check individual interactive elements too, not just
   `document.documentElement`). The bumped `py-2.5` on mobile keeps the
   tap target comfortable after shrinking the font.
+- **Two WebKit/Safari-specific bugs found post-launch** (reported as "empty
+  boxes" in Gallery and Sponsorship, reproduced with Playwright's `webkit`
+  browser against the live Vercel deployment — not visible in Chromium,
+  which is why earlier local testing missed them):
+  1. Sponsor logos in `components/sponsors/logo-marquee.tsx` (and gallery
+     photos in `components/gallery/gallery-grid.tsx`) relied on `next/
+     image`'s default `loading="lazy"`, which uses `IntersectionObserver`
+     under the hood. Safari's `IntersectionObserver` doesn't reliably fire
+     for images inside a continuously CSS-`transform`-animated container
+     (the marquee), so logos that were off-screen at page load could get
+     stuck at `img.complete === false` forever — a real, permanent blank
+     tile, confirmed via `img.complete`/`naturalWidth` checks, not just
+     visual inspection. Fixed by setting `loading="eager"` explicitly on
+     both — they're small, bounded image sets (27 logos, 5 photos), so
+     eager-loading is cheap and removes the lazy-loading uncertainty
+     entirely. Don't reintroduce default lazy loading on either.
+  2. Separately, the Gallery flip cards' permanent `[perspective:1000px]`
+     + `[transform-style:preserve-3d]` (present on every card at rest, not
+     just on hover) corrupted WebKit's compositing for *later* content on
+     the same page — confirmed by stripping those properties via
+     `page.evaluate` and watching the Sponsorship section's ghosting
+     disappear, with `elementFromPoint` confirming the "empty boxes" had
+     no backing DOM element at all (a pure paint artifact). Reproduced
+     even with the animation-free `motion-reduce` fallback grid, so it's
+     not about the marquee's `animation` or `mask-image` — a bare 3D
+     rendering context anywhere on the page was enough. Fixed by making
+     `perspective`/`transform-style: preserve-3d` conditional on
+     `hover:`/`focus-visible:` (button) and `group-hover:`/
+     `group-focus-visible:` (inner card) instead of permanent, so no 3D
+     context exists except during an active flip. Verified the flip
+     itself still works afterward (`matrix3d(...)` on hover, confirmed via
+     computed style, not just screenshot) before redeploying. If more 3D
+     CSS gets added anywhere on this page, test it in real WebKit — not
+     just Chromium — since this class of bug doesn't reproduce there.
 - **Bug found in `framer-motion`'s own `useReducedMotion()`** (re-exported
   from `motion/react`): it calls
   `window.matchMedia("(prefers-reduced-motion)")` — missing `: reduce` —

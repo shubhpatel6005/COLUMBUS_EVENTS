@@ -14,6 +14,7 @@ function LogoTile({ sponsor }: { sponsor: Sponsor }) {
           alt={sponsor.name}
           width={sponsor.width}
           height={sponsor.height}
+          loading="eager"
           className="h-full w-full object-contain"
         />
       </div>
