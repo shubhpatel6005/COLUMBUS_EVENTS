@@ -104,7 +104,7 @@ export default async function EventPage({
           href={event.ticketUrl}
           className={cn(
             buttonVariants({ variant: "default" }),
-            "h-11 bg-[#ebddd2] px-5 text-marigold hover:bg-[#ebddd2]/80",
+            "h-11 bg-[#ebddd2] px-5 font-heading text-marigold hover:bg-primary hover:text-ivory active:bg-primary active:text-ivory",
           )}
         >
           Get Tickets

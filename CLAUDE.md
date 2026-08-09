@@ -38,9 +38,11 @@ Audience: local residents 25-65, mostly on phones, often on slow connections.
   whether custom monthly amounts get dropped in favor of preset tiers).
 
 - Design direction: **Marigold Bloom** (see below) — deep violet + marigold
-  + terracotta, Playfair Display serif, full-bleed split image/text hero.
-  Replaced the earlier "Chattahoochee Current" river theme once the org's
-  real identity (Indian cultural nonprofit) was known.
+  + terracotta, Libertinus Math serif throughout, full-bleed split
+  image/text hero. Replaced the earlier "Chattahoochee Current" river
+  theme once the org's real identity (Indian cultural nonprofit) was
+  known; typeface later switched from Playfair Display/Inter to
+  Libertinus Math sitewide per explicit request.
 
 ## Rules
 - TypeScript strict. No `any`.
@@ -70,13 +72,16 @@ Audience: local residents 25-65, mostly on phones, often on slow connections.
   continuously auto-scrolling logo marquee (`components/sponsors/
   logo-marquee.tsx`), name printed under each logo, pausing on hover,
   falling back to a static wrapped grid under reduced motion. Below the
-  logos, a "50+ Sponsors" / "$500,000+ Sponsorship Amount" stat pair
-  (`components/sponsors/stat-counter.tsx`) counts up on scroll into view.
-  Its numbers are responsive (`text-3xl sm:text-5xl lg:text-6xl`, with a
-  matching `flex-wrap` + smaller gap on the container) — the original
-  fixed `text-5xl`/`gap-16` overflowed horizontally below ~400px
-  viewport width (confirmed via `document.documentElement.scrollWidth`
-  checks at 320/375/390px). Keep numeric stat callouts responsive by
+  logos, a "50+ Sponsors" stat (`components/sponsors/stat-counter.tsx`)
+  counts up on scroll into view — the "$500,000+ Sponsorship Amount"
+  stat that used to sit next to it was removed per request; the
+  component still supports a `prefix`/second stat if one comes back.
+  Its numbers are responsive (`text-3xl sm:text-5xl lg:text-6xl`) — back
+  when there were two stats side by side, the original fixed
+  `text-5xl`/`gap-16` overflowed horizontally below ~400px viewport
+  width (confirmed via `document.documentElement.scrollWidth` checks at
+  320/375/390px); the container also had a matching `flex-wrap` +
+  smaller gap at the time. Keep numeric stat callouts responsive by
   default; verify with a scrollWidth check, not just visual inspection,
   since overflow at narrow widths is easy to miss in a normal browser
   window. The "Sponsor deck PDF coming soon" line was removed per
@@ -183,10 +188,21 @@ headline).
     All flagged to the user explicitly; they chose to keep iterating on
     other things instead of fixing it. Don't "fix" this silently in a
     future session — it's a live open question, not an oversight. Ask
-    before changing.
-- Typefaces: display = **Playfair Display** (`font-heading`, CSS var
-  `--font-playfair`, weights 400-900), body = **Inter** (`font-sans`, CSS
-  var `--font-inter`). Both wired via `next/font/google` in `app/layout.tsx`.
+    before changing. All three buttons (Hero CTAs, homepage "Get
+    Tickets", `/events/[slug]` "Get Tickets") share the same hover/
+    active state per request: `hover:bg-primary hover:text-ivory
+    active:bg-primary active:text-ivory` — swaps to the header's
+    Marigold + ivory-text combo on interaction, only the resting state
+    keeps the low-contrast beige/marigold pairing above.
+- Typefaces: **Libertinus Math** for everything — both `font-heading` and
+  `font-sans` map to the same CSS var (`--font-libertinus`), wired via
+  `next/font/google` in `app/layout.tsx`. Replaced the earlier Playfair
+  Display (headings) / Inter (body) pairing per explicit request. Only
+  ships weight 400 (no bold cut), so `font-bold`/`font-semibold` render as
+  browser-synthesized faux-bold — a known tradeoff of this specific font,
+  not a bug. Next.js also can't generate ideal fallback-font metrics for
+  it (logged as a harmless build warning) since it's a less-common
+  Google Fonts entry.
 - Hero layout: full-bleed 50/50 split (`grid md:grid-cols-2`, no page
   max-width wrapper, both columns the same fixed height via `md:h-[640px]`)
   — image column left with `object-top` (keeps the subject's head/face in
@@ -311,9 +327,13 @@ headline).
   for inactive links, which blends with the Marigold bg into a muddy
   brownish tone rather than reading as clean purple. Don't reintroduce
   opacity fades on text sitting over Marigold. Nav link font is
-  `font-heading` (Playfair Display), matching the "Columbus Indian
-  Community Events" headline typeface, not the site's default Inter
-  body font. Nav *order* is About, Next Event, Gallery, Sponsors,
+  `font-heading` (Libertinus Math, matching the sitewide typeface),
+  rendered **uppercase** (`uppercase` class) and sized `text-xl` — bumped
+  up twice from an original `text-sm` per repeated explicit requests to
+  make the header more prominent; confirmed it still fits on one line at
+  the `md:` breakpoint (768px, the narrowest width the desktop nav
+  shows at) via a `scrollWidth` check before shipping each bump. Nav
+  *order* is About, Next Event, Gallery, Sponsors,
   Donate, Contact — but the actual page/section order (in
   `app/page.tsx`) stays Hero, Next Event (`#events`), About, Gallery,
   Sponsorship, Donate, Contact. These two orders are intentionally

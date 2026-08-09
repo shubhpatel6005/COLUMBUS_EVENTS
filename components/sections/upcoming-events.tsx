@@ -78,7 +78,7 @@ export function UpcomingEvents() {
                 href={event.ticketUrl}
                 className={cn(
                   buttonVariants({ variant: "default" }),
-                  "mt-4 h-12 w-full bg-[#ebddd2] px-6 text-base text-marigold hover:bg-[#ebddd2]/80",
+                  "mt-4 h-12 w-full bg-[#ebddd2] px-6 font-heading text-base text-marigold hover:bg-primary hover:text-ivory active:bg-primary active:text-ivory",
                 )}
               >
                 Get Tickets

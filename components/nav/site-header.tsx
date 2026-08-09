@@ -54,7 +54,7 @@ export function SiteHeader() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav className="hidden items-center gap-5 md:flex">
             {SECTIONS.map((section) => (
               <a
                 key={section.id}
@@ -62,8 +62,8 @@ export function SiteHeader() {
                 aria-current={activeId === section.id ? "true" : undefined}
                 className={
                   activeId === section.id
-                    ? "font-heading text-base font-semibold text-ivory underline underline-offset-4"
-                    : "font-heading text-base font-medium text-deep-violet hover:underline"
+                    ? "font-heading text-xl font-semibold text-ivory uppercase underline underline-offset-4"
+                    : "font-heading text-xl font-medium text-deep-violet uppercase hover:underline"
                 }
               >
                 {section.label}

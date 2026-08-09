@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Libertinus_Math } from "next/font/google";
 
 import { NewsletterBar } from "@/components/newsletter/newsletter-bar";
 import "./globals.css";
 
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
+const libertinusMath = Libertinus_Math({
+  variable: "--font-libertinus",
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800", "900"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -32,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfairDisplay.variable} ${inter.variable} h-full antialiased`}
+      className={`${libertinusMath.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {children}
