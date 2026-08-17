@@ -63,7 +63,7 @@ export function UpcomingEvents() {
                   alt={event.title}
                   width={724}
                   height={1024}
-                  className="h-auto w-full object-cover"
+                  className="aspect-[724/1024] w-full object-cover"
                 />
               </Link>
               <p className="mt-4 text-sm text-turmeric">
