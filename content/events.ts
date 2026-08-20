@@ -21,25 +21,25 @@ const VENUE = {
 export const events: EventItem[] = [
   {
     slug: "garba-night-geeta-rabari",
-    title: "6th Annual Garba Musical Night — Geeta Rabari",
+    title: "6th Annual Garba Musical Night — Rutvi Pandya",
     description:
-      "Join Columbus Indian Community Events, Inc. for the 6th Annual Garba Musical Night featuring Geeta Rabari — an evening of music, dance, and community celebration.",
+      "Join Columbus Indian Community Events, Inc. for the 6th Annual Garba Musical Night featuring Rutvi Pandya — an evening of music, dance, and community celebration.",
     startDateTime: "2026-09-04T19:00:00-04:00",
     endDateTime: "2026-09-04T23:00:00-04:00",
     ...VENUE,
     imageSrc: "/images/events/Temp.jpg",
-    ticketUrl: "#",
+    ticketUrl: "https://mcsms.io/uoGa69",
   },
   {
     slug: "garba-night-divya-chaudhary",
-    title: "6th Annual Garba Musical Night — Divya Chaudhary",
+    title: "6th Annual Garba Musical Night — Kairavi Buch",
     description:
-      "Join Columbus Indian Community Events, Inc. for the 6th Annual Garba Musical Night featuring Divya Chaudhary — an evening of music, dance, and community celebration.",
+      "Join Columbus Indian Community Events, Inc. for the 6th Annual Garba Musical Night featuring Kairavi Buch — an evening of music, dance, and community celebration.",
     startDateTime: "2026-09-05T19:00:00-04:00",
     endDateTime: "2026-09-05T23:00:00-04:00",
     ...VENUE,
     imageSrc: "/images/events/Temp.jpg",
-    ticketUrl: "#",
+    ticketUrl: "https://mcsms.io/yvUO50",
   },
   {
     slug: "garba-night-aishwaria-majumdar",
@@ -49,8 +49,8 @@ export const events: EventItem[] = [
     startDateTime: "2026-09-06T19:00:00-04:00",
     endDateTime: "2026-09-06T23:00:00-04:00",
     ...VENUE,
-    imageSrc: "/images/events/garba-night-aishwaria-majumdar.jpg",
-    ticketUrl: "#",
+    imageSrc: "/images/events/Temp1.jpg",
+    ticketUrl: "https://mcsms.io/RwM8LB",
   },
 ];
 

@@ -38,7 +38,7 @@ export function UpcomingEvents() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-[73.6rem]">
         <p className="text-center font-heading text-sm font-semibold tracking-widest text-turmeric uppercase">
           Upcoming
         </p>
@@ -52,7 +52,7 @@ export function UpcomingEvents() {
               key={event.slug}
               layout
               transition={{ duration: 0.6, ease: "easeInOut" }}
-              className="flex flex-col items-center text-center"
+              className="flex h-full flex-col items-center text-center"
             >
               <Link
                 href={`/events/${event.slug}`}
@@ -63,7 +63,7 @@ export function UpcomingEvents() {
                   alt={event.title}
                   width={724}
                   height={1024}
-                  className="aspect-[724/1024] w-full object-cover"
+                  className="aspect-[1195/1918] w-full object-cover"
                 />
               </Link>
               <p className="mt-4 text-sm text-turmeric">
@@ -78,7 +78,7 @@ export function UpcomingEvents() {
                 href={event.ticketUrl}
                 className={cn(
                   buttonVariants({ variant: "default" }),
-                  "mt-4 h-12 w-full bg-[#ebddd2] px-6 font-heading text-base text-marigold hover:bg-primary hover:text-ivory active:bg-primary active:text-ivory",
+                  "mt-auto h-12 w-full bg-[#ebddd2] px-6 font-heading text-base text-marigold hover:bg-primary hover:text-ivory active:bg-primary active:text-ivory",
                 )}
               >
                 Get Tickets
