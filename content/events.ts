@@ -27,7 +27,7 @@ export const events: EventItem[] = [
     startDateTime: "2026-09-04T19:00:00-04:00",
     endDateTime: "2026-09-04T23:00:00-04:00",
     ...VENUE,
-    imageSrc: "/images/events/Temp.jpg",
+    imageSrc: "/images/events/Temp1.jpg",
     ticketUrl: "https://mcsms.io/uoGa69",
   },
   {
@@ -38,7 +38,7 @@ export const events: EventItem[] = [
     startDateTime: "2026-09-05T19:00:00-04:00",
     endDateTime: "2026-09-05T23:00:00-04:00",
     ...VENUE,
-    imageSrc: "/images/events/Temp.jpg",
+    imageSrc: "/images/events/Temp1.jpg",
     ticketUrl: "https://mcsms.io/yvUO50",
   },
   {
